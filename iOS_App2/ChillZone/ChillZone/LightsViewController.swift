@@ -30,12 +30,21 @@ class LightsViewController: UIViewController, UITableViewDelegate, UITableViewDa
     @IBOutlet weak var globeSwitch: UISwitch!
     @IBOutlet weak var readingSwitch: UISwitch!
     @IBOutlet weak var ambientSwitch: UISwitch!
+    @IBAction func globeHandler(_ sender: UISwitch) {
+        LightHandler.send(preset: Preset(name : "", globe : sender.isOn, reading : LightHandler.states["reading"]!, ambient : LightHandler.states["ambient"]!))
+    }
     
+    @IBAction func readingHandler(_ sender: UISwitch) {
+        LightHandler.send(preset: Preset(name : "", globe : LightHandler.states["globe"]!, reading : sender.isOn, ambient : LightHandler.states["ambient"]!))
+    }
+    @IBAction func ambientHandler(_ sender: UISwitch) {
+        LightHandler.send(preset: Preset(name : "", globe : LightHandler.states["globe"]!, reading : LightHandler.states["reading"]!, ambient : sender.isOn))
+    }
     @IBOutlet weak var presetTable: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        let curState : Preset = LightHandler.setUp();
+        let curState : Preset = LightHandler.setUp(self);
         globeSwitch.setOn(curState.globe, animated: false);
         readingSwitch.setOn(curState.reading, animated: false);
         ambientSwitch.setOn(curState.ambient, animated: false);
@@ -49,9 +58,15 @@ class LightsViewController: UIViewController, UITableViewDelegate, UITableViewDa
             presets.append(Preset(name: "Lights", globe: false, reading: false, ambient: true));
         }
         presetTable.reloadData();
+        
+        LightHandler.getState();
         // Do any additional setup after loading the view.
     }
-
+    public func updateStates(_ states : [String : Bool]){
+        ambientSwitch.isOn = states["ambient"]!
+        globeSwitch.isOn = states["globe"]!
+        readingSwitch.isOn = states["reading"]!
+    }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -77,6 +92,9 @@ class LightsViewController: UIViewController, UITableViewDelegate, UITableViewDa
             NSKeyedArchiver.archiveRootObject(presets, toFile: LightsViewController.archURL.path)
         }
         
+    }
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        LightHandler.send(preset: presets[indexPath.row]);
     }
     /*
     // MARK: - Navigation

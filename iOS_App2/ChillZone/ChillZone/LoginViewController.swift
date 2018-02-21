@@ -26,18 +26,28 @@ class LoginViewController: UIViewController, UITextViewDelegate {
     @IBAction func loginClick(_ sender: UIButton) {
         User.login(username: usernameField.text, password: passwordField.text, isGuest: false) {()->Void in
             if(User.isAdmin()){
-                performSegue(withIdentifier: "loginseg", sender: self);
+                self.performSegue(withIdentifier: "loginseg", sender: self);
             }
         }
     }
     @IBAction func guestLoginClick(_ sender: UIButton) {
         User.login(username: nil, password: nil, isGuest: true) {()->Void in
             if(User.isLoggedIn()){
-                performSegue(withIdentifier: "guestloginseg", sender: self);
+                print("doing guest");
+                self.performSegue(withIdentifier: "guestloginseg", sender: self);
             }
         }
     }
-    
+    override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
+        print("doing test");
+        if let _ = sender as? LoginViewController{
+            return true;
+        }
+        if(identifier == "guestLoginSeg"){
+            return true;
+        }
+        return false;
+    }
     /*
     // MARK: - Navigation
 

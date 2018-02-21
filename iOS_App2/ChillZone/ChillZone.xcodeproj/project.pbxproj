@@ -20,6 +20,7 @@
 		576886A1202E35C2001FBE75 /* Preset.swift in Sources */ = {isa = PBXBuildFile; fileRef = 576886A0202E35C2001FBE75 /* Preset.swift */; };
 		576886A3202E36D6001FBE75 /* LightHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 576886A2202E36D6001FBE75 /* LightHandler.swift */; };
 		576886A5202E3783001FBE75 /* LightsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 576886A4202E3783001FBE75 /* LightsTableViewCell.swift */; };
+		577E5201203D64AA002D65A8 /* IPManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 577E5200203D64AA002D65A8 /* IPManager.swift */; };
 		578BD36E202EB07000D26653 /* PeopleTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 578BD36D202EB07000D26653 /* PeopleTableViewController.swift */; };
 		578BD370202EB0C200D26653 /* PeopleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 578BD36F202EB0C200D26653 /* PeopleTableViewCell.swift */; };
 /* End PBXBuildFile section */
@@ -61,6 +62,7 @@
 		576886A0202E35C2001FBE75 /* Preset.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Preset.swift; sourceTree = "<group>"; };
 		576886A2202E36D6001FBE75 /* LightHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LightHandler.swift; sourceTree = "<group>"; };
 		576886A4202E3783001FBE75 /* LightsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LightsTableViewCell.swift; sourceTree = "<group>"; };
+		577E5200203D64AA002D65A8 /* IPManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IPManager.swift; sourceTree = "<group>"; };
 		578BD36D202EB07000D26653 /* PeopleTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeopleTableViewController.swift; sourceTree = "<group>"; };
 		578BD36F202EB0C200D26653 /* PeopleTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeopleTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -124,6 +126,7 @@
 				5768869C202E3076001FBE75 /* LightsViewController.swift */,
 				5768869E202E3081001FBE75 /* MenuViewController.swift */,
 				5768869A202E2A36001FBE75 /* User.swift */,
+				577E5200203D64AA002D65A8 /* IPManager.swift */,
 				57688671202E21EC001FBE75 /* Assets.xcassets */,
 				57688673202E21EC001FBE75 /* LaunchScreen.storyboard */,
 				57688676202E21EC001FBE75 /* Info.plist */,
@@ -289,6 +292,7 @@
 				576886A5202E3783001FBE75 /* LightsTableViewCell.swift in Sources */,
 				5768869F202E3081001FBE75 /* MenuViewController.swift in Sources */,
 				5768866B202E21EC001FBE75 /* AppDelegate.swift in Sources */,
+				577E5201203D64AA002D65A8 /* IPManager.swift in Sources */,
 				5768869B202E2A36001FBE75 /* User.swift in Sources */,
 				576886A1202E35C2001FBE75 /* Preset.swift in Sources */,
 				578BD36E202EB07000D26653 /* PeopleTableViewController.swift in Sources */,
