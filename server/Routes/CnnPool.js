@@ -7,7 +7,7 @@ var CnnPool = function() {
    this.pool = mysql.createPool(poolCfg);
 };
 
-CnnPool.PoolSize = 30;
+CnnPool.PoolSize = 1;
 
 CnnPool.prototype.getConnection = function(cb) {
    this.pool.getConnection(cb);

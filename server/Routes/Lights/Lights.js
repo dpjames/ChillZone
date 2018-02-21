@@ -36,13 +36,17 @@ router.post('/:light', function(req, res) {
 
 
    lightState[n-4] = !lightState[n-4];
+   /*
    ssnUtil.cometEmitter.emit("comet", 
     {"light" : light, "state" : lightState[n-4]});
-   ssnUtil.cometEmitter.removeAllListeners(["comet"]); 
+   */
+   ssnUtil.cometEmitter.emit("comet", {"path" : "/Lights"});
+   ssnUtil.cometEmitter.removeAllListeners(["comet"]);
    res.status(200).end();
 });
 
 router.get('/', function(req, res) {
+   req.cnn.release();
    res.json({
       "globe" : lightState[0],
       "ambient" : lightState[1],

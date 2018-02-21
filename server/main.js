@@ -12,6 +12,8 @@ var async = require('async');
 var app = express();
 
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, 'public/js')));
+app.use(express.static(path.join(__dirname, 'public/css')));
 
 app.use(bodyParser.json());
 
@@ -20,6 +22,8 @@ app.use(cookieParser());
 app.use(Session.router);
 
 app.use(function(req, res, next) {
+   console.log(req.path);
+   console.log(req.body);
    if (req.session 
     || req.method === 'GET' && req.path.indexOf('/Comet') === 0 
     || req.path.indexOf('/Lights') === 0
@@ -104,6 +108,18 @@ if (!parseInt(port)){
    process.exit();
 }
 app.listen(port, function () {
+   var util = require('util');
+   const { exec } = require('child_process');
+   exec('./lights 0', (err, stdout, stderr) => {
+     if (err) {
+       // node couldn't execute the command
+       return;
+     }
+
+     // the *entire* stdout and stderr (buffered)
+     console.log(`stdout: ${stdout}`);
+     console.log(`stderr: ${stderr}`);
+   });
    console.log('App Listening on port ' + port);
 });
 
