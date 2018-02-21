@@ -16,6 +16,14 @@ router.post('/:light', function(req, res) {
    } 
    else if (light === "reading") {  
       n = 6;
+   } else if (light == "off") {
+      n = 0;
+   } else if (light == "study") {
+      n = 2
+   } else if (light == "chill") {
+      n = 1
+   } else if (light == "lights") {
+      n = 3
    }
    else {
       res.status(400).end();
