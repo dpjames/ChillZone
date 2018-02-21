@@ -180,10 +180,16 @@
                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="RPV-5S-yuQ">
                                 <rect key="frame" x="163" y="112" width="51" height="31"/>
                                 <color key="onTintColor" red="0.27943581342697144" green="0.59782212972640991" blue="0.94560223817825317" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <connections>
+                                    <action selector="readingHandler:" destination="4cK-hM-fHx" eventType="valueChanged" id="63Q-F3-0zn"/>
+                                </connections>
                             </switch>
                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dqE-om-Lnu">
                                 <rect key="frame" x="163" y="158" width="51" height="31"/>
                                 <color key="onTintColor" red="0.27943581342697144" green="0.59782212972640991" blue="0.94560223817825317" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <connections>
+                                    <action selector="ambientHandler:" destination="4cK-hM-fHx" eventType="valueChanged" id="bXk-aG-3yu"/>
+                                </connections>
                             </switch>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="V9T-7i-U0a">
                                 <rect key="frame" x="0.0" y="306" width="375" height="361"/>
@@ -245,6 +251,9 @@
                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5LB-Zc-dML">
                                 <rect key="frame" x="163" y="63" width="51" height="31"/>
                                 <color key="onTintColor" red="0.27766612554452941" green="0.59758513572582705" blue="0.94537085294723511" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <connections>
+                                    <action selector="globeHandler:" destination="4cK-hM-fHx" eventType="valueChanged" id="vwS-WG-C1t"/>
+                                </connections>
                             </switch>
                         </subviews>
                         <color key="backgroundColor" red="0.94185078144073486" green="0.93224376440048218" blue="0.94537085294723511" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
