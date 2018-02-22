@@ -5,6 +5,11 @@ var router = Express.Router({caseSensitive: true});
 var lightState = [false, false, false];
 var util = require('util');
 router.post('/:light', function(req, res) {
+   var setLightState = function(globe, reading, ambient){
+      lightState[0] = globe;
+      lightState[2] = reading;
+      lightState[1] = ambient;
+   }
    var light = req.params.light; 
    var n;
    req.cnn.release();
@@ -17,12 +22,16 @@ router.post('/:light', function(req, res) {
    else if (light === "reading") {  
       n = 6;
    } else if (light == "off") {
+      setLightState(false, false, false);
       n = 0;
    } else if (light == "study") {
+      setLightState(true, true, false);
       n = 2
    } else if (light == "chill") {
+      setLightState(true, false, false);
       n = 1
    } else if (light == "lights") {
+      setLightState(false, false, true);
       n = 3
    }
    else {
