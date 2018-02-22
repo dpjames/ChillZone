@@ -117,8 +117,8 @@ app.listen(port, function () {
      }
 
      // the *entire* stdout and stderr (buffered)
-     console.log(`stdout: ${stdout}`);
-     console.log(`stderr: ${stderr}`);
+     //console.log(`stdout: ${stdout}`);
+     //console.log(`stderr: ${stderr}`);
    });
    console.log('App Listening on port ' + port);
 });

@@ -57,8 +57,11 @@ router.post('/:light', function(req, res) {
    ssnUtil.cometEmitter.emit("comet", 
     {"light" : light, "state" : lightState[n-4]});
    */
+   console.log("look here");
+   console.log(ssnUtil.cometEmitter.listeners("comet"));
    ssnUtil.cometEmitter.emit("comet", {"path" : "/Lights"});
    ssnUtil.cometEmitter.removeAllListeners(["comet"]);
+   //console.log(lightState);
    res.status(200).end();
 });
 

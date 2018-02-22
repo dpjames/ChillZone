@@ -6,6 +6,7 @@ var router = Express.Router({caseSensitive: true});
 router.get('/', function(req, res) {
    req.cnn.release();
    var cometFun = function(body){
+      console.log("fufilling request");
       console.log(body);
       res.status(200).json(body); 
    };
