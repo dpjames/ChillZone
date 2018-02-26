@@ -60,9 +60,11 @@ class LightsViewController: UIViewController, UITableViewDelegate, UITableViewDa
         presetTable.reloadData();
         
         LightHandler.getState();
+        LightHandler.comet();
         // Do any additional setup after loading the view.
     }
     public func updateStates(_ states : [String : Bool]){
+        print(states)
         ambientSwitch.isOn = states["ambient"]!
         globeSwitch.isOn = states["globe"]!
         readingSwitch.isOn = states["reading"]!
@@ -91,7 +93,6 @@ class LightsViewController: UIViewController, UITableViewDelegate, UITableViewDa
             print("updateing");
             NSKeyedArchiver.archiveRootObject(presets, toFile: LightsViewController.archURL.path)
         }
-        
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         LightHandler.send(preset: presets[indexPath.row]);

@@ -57,14 +57,34 @@ class LightHandler {
             let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
                 print(String(describing: data));
                 //print(response);
+                print("got response for the get thing")
                 let json = try? JSONSerialization.jsonObject(with: data!, options: []) as! [String: Any?]
                 states["ambient"] = json!["ambient"] as! Int == 1;
                 states["globe"] = json!["globe"] as! Int == 1;
                 states["reading"] = json!["reading"] as! Int == 1;
                 print(states);
                 DispatchQueue.main.async {
+                    print("doing the thing")
+                    print(states);
                     viewController?.updateStates(states);
                 }
+            }
+            task.resume();
+        }
+    }
+    public static func comet(){
+        DispatchQueue.global(qos: .userInitiated).async {
+            let url = URL(string : IPManager.IP+"/Comet")
+            var req = URLRequest(url: url!)
+            req.httpMethod = "GET"
+            let task = URLSession.shared.dataTask(with: req) {(data, response, error) in
+                let json = try? JSONSerialization.jsonObject(with: data!, options: []) as! [String : Any?]
+                let path = json!["path"] as! String;
+                print(path);
+                if(path == "/Lights"){
+                    getState();
+                }
+                comet();
             }
             task.resume();
         }
