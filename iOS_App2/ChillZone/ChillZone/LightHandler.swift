@@ -7,24 +7,10 @@
 //
 import Foundation
 class LightHandler {
-    //static let IP : String = "http://47.32.178.27";
-    //static let IP : String = "http://192.168.2.9:3000";
-    //static var IP : String = "http://192.168.1.21";
-    //static var local = true;
     static var viewController : LightsViewController?;
     static var states : [String : Bool] = [:];
     static func setUp(_ vc : LightsViewController) -> Preset{
         self.viewController = vc;
-        /*
-        print("loacl is " + String(local));
-        if(local){
-            print("on wifi");
-            IP = "http://192.168.1.21"
-        }else{
-            print("not on wifi");
-            IP = "47.32.178.27";
-        }
-         */
         states["ambient"] = false;
         states["globe"] = false;
         states["reading"] = false;
@@ -39,25 +25,15 @@ class LightHandler {
     }
     static func toggle(light : String, state: Bool){
         if(state != states[light]){
-            send(theurl: IPManager.IP+"/Lights/"+light);
+            send(path : "/Lights/"+light);
         }
     }
-    private static func send(theurl : String){
-        print(theurl);
-        DispatchQueue.global(qos: .userInitiated).async {
-            let url = URL(string: theurl)
-            var request = URLRequest(url: url!);
-            request.httpMethod = "POST";
-            URLSession.shared.dataTask(with: request).resume();
-        }
+    private static func send(path : String){
+        HttpHandler.request(method: "POST", path: path, body: ""){_,_,_ in }
     }
     public static func getState(){
         DispatchQueue.global(qos: .userInitiated).async {
-            let url = URL(string: IPManager.IP+"/Lights")
-            print(IPManager.IP+"/Lights");
-            var request = URLRequest(url: url!);
-            request.httpMethod = "GET";
-            let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
+            HttpHandler.request(method: "GET", path: "/Lights", body: ""){(data, response, error) in
                 if(data == nil){
                     return;
                 }
@@ -75,28 +51,6 @@ class LightHandler {
                     viewController?.updateStates(states);
                 }
             }
-            task.resume();
-        }
-    }
-    public static func comet(){
-        DispatchQueue.global(qos: .userInitiated).async {
-            let url = URL(string : IPManager.IP+"/Comet")
-            var req = URLRequest(url: url!)
-            req.httpMethod = "GET"
-            let task = URLSession.shared.dataTask(with: req) {(data, response, error) in
-                if(data == nil){
-                    comet();
-                    return;
-                }
-                let json = try? JSONSerialization.jsonObject(with: data!, options: []) as! [String : Any?]
-                let path = json!["path"] as! String;
-                print(path);
-                if(path == "/Lights"){
-                    getState();
-                }
-                comet();
-            }
-            task.resume();
         }
     }
 }

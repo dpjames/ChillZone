@@ -17,26 +17,19 @@ class User{
             closure();
             return;
         }
-        //need to add login logic, once server is set up TODO
         self.email = username;
-        var req : URLRequest = URLRequest(url: URL(string: IPManager.IP+"/Ssns")!);
-        req.httpMethod = "POST";
         var body : String = "{\"email\" : \"";
         body+=username!;
         body+="\", \"password\" : \""
         body+=password!;
         body+="\"}"
-        print(body);
-        print("body above");
-        req.httpBody = body.data(using: String.Encoding.utf8);
-        req.setValue("application/json", forHTTPHeaderField: "Content-Type")
-        let task = URLSession.shared.dataTask(with: req) {(data, response, error) in
+        HttpHandler.request(method: "POST", path: "/Ssns", body: body){(data, response, error) in
             if(data == nil){
                 return;
             }
             let code = (response as! HTTPURLResponse).statusCode;
             print(code);
-            if(true || code == 200){
+            if(code == 200){
                 admin = true;
                 DispatchQueue.main.async {
                     closure();
@@ -47,7 +40,8 @@ class User{
                 return;
             }
         }
-        task.resume();
+        print(body);
+        print("body above");
     }
     public static func isLoggedIn() -> Bool{
         return loggedin;

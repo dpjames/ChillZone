@@ -48,7 +48,6 @@ class LightsViewController: UIViewController, UITableViewDelegate, UITableViewDa
         globeSwitch.setOn(curState.globe, animated: false);
         readingSwitch.setOn(curState.reading, animated: false);
         ambientSwitch.setOn(curState.ambient, animated: false);
-        //if there is a saved preset table, then load it, else load the default 3 presets.
         if let tempArr = NSKeyedUnarchiver.unarchiveObject(withFile: LightsViewController.archURL.path) as? [Preset] {
             presets = tempArr;
         }else{
@@ -58,10 +57,11 @@ class LightsViewController: UIViewController, UITableViewDelegate, UITableViewDa
             presets.append(Preset(name: "Lights", globe: false, reading: false, ambient: true));
         }
         presetTable.reloadData();
-        
         LightHandler.getState();
-        LightHandler.comet();
-        // Do any additional setup after loading the view.
+        Comet.key(key: "/Lights")
+        Comet.callback(){ () -> Void in
+            LightHandler.getState();
+        }
     }
     public func updateStates(_ states : [String : Bool]){
         print(states)
@@ -96,6 +96,9 @@ class LightsViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         LightHandler.send(preset: presets[indexPath.row]);
+    }
+    override func viewWillDisappear(_ animated: Bool) {
+        Comet.reset();
     }
     /*
     // MARK: - Navigation

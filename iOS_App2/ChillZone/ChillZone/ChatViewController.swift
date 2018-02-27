@@ -16,12 +16,7 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "messageCell", for: indexPath) as! MessageTableViewCell;
-        // Configure the cell...
-        //cell.textLabel!.text = String(indexPath.row);
-        //cell.content.text = "a very very very very very long text tstring that should exceep the row or something idk"
         cell.content.text = messages[indexPath.row].content
-        print(User.email);
-        print(messages[indexPath.row].email);
         cell.content.textAlignment = messages[indexPath.row].email == User.email! ? NSTextAlignment.right : NSTextAlignment.left;
         return cell
     }
@@ -29,6 +24,7 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
         DispatchQueue.main.async {
             if(self.messages.count > 0){
                 let indexPath = IndexPath(row: self.messages.count-1, section: 0)
+                print("indide now to scroll. with ip \(indexPath.row) and length \(self.messages.count)")
                 self.tableView.scrollToRow(at: indexPath, at: .bottom, animated: false)
             }
         }
@@ -36,20 +32,23 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
     @IBOutlet weak var tableView: UITableView!
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        //TODO save messages local and then remove getAllMessagesCall(). replaec with getmessages(since: last time message)
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 140
         MessageHandler.setUp(vc: self)
-        MessageHandler.comet();
         MessageHandler.getAllMessages()
-        
-        // Do any additional setup after loading the view.
+        Comet.key(key : "/Cnvs/1/Msgs")
+        Comet.callback(){() in
+            if(self.messages.isEmpty){
+                MessageHandler.getAllMessages();
+                return;
+            }
+            MessageHandler.getMessages(since: self.messages[self.messages.count-1].whenMade)
+        }
     }
     
     @IBOutlet weak var composeMessage: UITextView!
     @IBAction func doSend(_ sender: UIButton) {
-        print(composeMessage.text!)
-        print("look above!!!");
         MessageHandler.sendMessage(content: composeMessage.text!);
     }
     
@@ -57,16 +56,8 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    override func viewWillDisappear(_ animated: Bool) {
+        Comet.reset();
     }
-    */
 
 }

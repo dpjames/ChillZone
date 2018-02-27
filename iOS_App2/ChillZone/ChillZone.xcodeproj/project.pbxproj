@@ -11,6 +11,8 @@
 		5737BAF9204518F900F31FDB /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5737BAF8204518F900F31FDB /* Message.swift */; };
 		5737BAFB20451A7100F31FDB /* MessageHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5737BAFA20451A7100F31FDB /* MessageHandler.swift */; };
 		5745ACBB20449E07000A880B /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5745ACBA20449E07000A880B /* ChatViewController.swift */; };
+		5745ACBD2045BC54000A880B /* Comet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5745ACBC2045BC54000A880B /* Comet.swift */; };
+		5745ACBF2045CF9D000A880B /* HttpHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5745ACBE2045CF9D000A880B /* HttpHandler.swift */; };
 		5768866B202E21EC001FBE75 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5768866A202E21EC001FBE75 /* AppDelegate.swift */; };
 		57688670202E21EC001FBE75 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5768866E202E21EC001FBE75 /* Main.storyboard */; };
 		57688672202E21EC001FBE75 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 57688671202E21EC001FBE75 /* Assets.xcassets */; };
@@ -52,6 +54,8 @@
 		5737BAF8204518F900F31FDB /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		5737BAFA20451A7100F31FDB /* MessageHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageHandler.swift; sourceTree = "<group>"; };
 		5745ACBA20449E07000A880B /* ChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
+		5745ACBC2045BC54000A880B /* Comet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Comet.swift; sourceTree = "<group>"; };
+		5745ACBE2045CF9D000A880B /* HttpHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HttpHandler.swift; sourceTree = "<group>"; };
 		57688667202E21EC001FBE75 /* ChillZone.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ChillZone.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5768866A202E21EC001FBE75 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5768866F202E21EC001FBE75 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -125,6 +129,7 @@
 		57688669202E21EC001FBE75 /* ChillZone */ = {
 			isa = PBXGroup;
 			children = (
+				5745ACBC2045BC54000A880B /* Comet.swift */,
 				576886A0202E35C2001FBE75 /* Preset.swift */,
 				57688698202E2862001FBE75 /* LoginViewController.swift */,
 				5768866A202E21EC001FBE75 /* AppDelegate.swift */,
@@ -139,6 +144,7 @@
 				5768869C202E3076001FBE75 /* LightsViewController.swift */,
 				5768869E202E3081001FBE75 /* MenuViewController.swift */,
 				5768869A202E2A36001FBE75 /* User.swift */,
+				5745ACBE2045CF9D000A880B /* HttpHandler.swift */,
 				577E5200203D64AA002D65A8 /* IPManager.swift */,
 				5745ACBA20449E07000A880B /* ChatViewController.swift */,
 				5737BAFA20451A7100F31FDB /* MessageHandler.swift */,
@@ -317,6 +323,8 @@
 				576886A1202E35C2001FBE75 /* Preset.swift in Sources */,
 				578BD36E202EB07000D26653 /* PeopleTableViewController.swift in Sources */,
 				5768869D202E3076001FBE75 /* LightsViewController.swift in Sources */,
+				5745ACBF2045CF9D000A880B /* HttpHandler.swift in Sources */,
+				5745ACBD2045BC54000A880B /* Comet.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
