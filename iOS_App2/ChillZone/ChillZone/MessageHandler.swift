@@ -16,7 +16,8 @@ class MessageHandler{
         getMessages(since: 0)
     }
     static func getMessages(since time : Double){
-        HttpHandler.request(method: "GET", path: "/Cnvs/1/Msgs", body: ""){(data, response, error) in
+        print(time);
+        HttpHandler.request(method: "GET", path: "/Cnvs/1/Msgs?dateTime="+String(time), body: ""){(data, response, error) in
             if(data == nil){
                 print("no data")
                 return;
@@ -43,19 +44,8 @@ class MessageHandler{
     }
     
     static func sendMessage(content : String){
-        DispatchQueue.global(qos: .userInitiated).async {
-            let url = URL(string: IPManager.IP+"/Cnvs/1/Msgs")
-            var request = URLRequest(url: url!);
-            request.httpMethod = "POST";
-            let body : String = "{\"content\" : \"\(content)\"}"
-            request.httpBody = body.data(using: String.Encoding.utf8)
-            request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-            print(String(describing: request.httpBody!))
-            let task = URLSession.shared.dataTask(with: request){(data, response, error) in
-                //TODO possible error checking here
-            }
-            task.resume();
-        }
+        let body : String = "{\"content\" : \"\(content)\"}"
+        HttpHandler.request(method: "POST", path: "/Cnvs/1/Msgs", body: body){_,_,_ in };
     }
 }
 

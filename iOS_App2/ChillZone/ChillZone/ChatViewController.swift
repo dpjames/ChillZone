@@ -39,6 +39,7 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
         MessageHandler.getAllMessages()
         Comet.key(key : "/Cnvs/1/Msgs")
         Comet.callback(){() in
+            print("callback-----------")
             if(self.messages.isEmpty){
                 MessageHandler.getAllMessages();
                 return;
