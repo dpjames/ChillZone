@@ -55,3 +55,25 @@ input:checked + .slider:before {
 .slider.round:before {
   border-radius: 50%;
 }
+.button-name{
+   font-size : 30px;
+}
+#togglediv {
+   width: 70px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
