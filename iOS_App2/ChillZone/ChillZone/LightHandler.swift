@@ -25,7 +25,10 @@ class LightHandler {
             IP = "47.32.178.27";
         }
          */
-        return Preset(name: "", globe: false, reading: true, ambient: true);
+        states["ambient"] = false;
+        states["globe"] = false;
+        states["reading"] = false;
+        return Preset(name: "", globe: false, reading: false, ambient: false);
     }
     static func send(preset : Preset){
         print("triggered");
@@ -55,6 +58,9 @@ class LightHandler {
             var request = URLRequest(url: url!);
             request.httpMethod = "GET";
             let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
+                if(data == nil){
+                    return;
+                }
                 print(String(describing: data));
                 //print(response);
                 print("got response for the get thing")
@@ -78,6 +84,10 @@ class LightHandler {
             var req = URLRequest(url: url!)
             req.httpMethod = "GET"
             let task = URLSession.shared.dataTask(with: req) {(data, response, error) in
+                if(data == nil){
+                    comet();
+                    return;
+                }
                 let json = try? JSONSerialization.jsonObject(with: data!, options: []) as! [String : Any?]
                 let path = json!["path"] as! String;
                 print(path);

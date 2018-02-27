@@ -29,6 +29,9 @@ class User{
         req.httpBody = body.data(using: String.Encoding.utf8);
         req.setValue("application/json", forHTTPHeaderField: "Content-Type")
         let task = URLSession.shared.dataTask(with: req) {(data, response, error) in
+            if(data == nil){
+                return;
+            }
             let code = (response as! HTTPURLResponse).statusCode;
             print(code);
             if(code == 200){

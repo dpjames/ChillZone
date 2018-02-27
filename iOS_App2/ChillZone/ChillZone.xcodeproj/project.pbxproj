@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5745ACBB20449E07000A880B /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5745ACBA20449E07000A880B /* ChatViewController.swift */; };
 		5768866B202E21EC001FBE75 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5768866A202E21EC001FBE75 /* AppDelegate.swift */; };
 		57688670202E21EC001FBE75 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5768866E202E21EC001FBE75 /* Main.storyboard */; };
 		57688672202E21EC001FBE75 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 57688671202E21EC001FBE75 /* Assets.xcassets */; };
@@ -23,6 +24,7 @@
 		577E5201203D64AA002D65A8 /* IPManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 577E5200203D64AA002D65A8 /* IPManager.swift */; };
 		578BD36E202EB07000D26653 /* PeopleTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 578BD36D202EB07000D26653 /* PeopleTableViewController.swift */; };
 		578BD370202EB0C200D26653 /* PeopleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 578BD36F202EB0C200D26653 /* PeopleTableViewCell.swift */; };
+		57E528102044F3E100AED835 /* PeopleDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57E5280F2044F3E100AED835 /* PeopleDetailViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -43,6 +45,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		5745ACBA20449E07000A880B /* ChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
 		57688667202E21EC001FBE75 /* ChillZone.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ChillZone.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5768866A202E21EC001FBE75 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5768866F202E21EC001FBE75 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -65,6 +68,7 @@
 		577E5200203D64AA002D65A8 /* IPManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IPManager.swift; sourceTree = "<group>"; };
 		578BD36D202EB07000D26653 /* PeopleTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeopleTableViewController.swift; sourceTree = "<group>"; };
 		578BD36F202EB0C200D26653 /* PeopleTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeopleTableViewCell.swift; sourceTree = "<group>"; };
+		57E5280F2044F3E100AED835 /* PeopleDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeopleDetailViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -95,7 +99,6 @@
 		5768865E202E21EC001FBE75 = {
 			isa = PBXGroup;
 			children = (
-				578BD36D202EB07000D26653 /* PeopleTableViewController.swift */,
 				57688669202E21EC001FBE75 /* ChillZone */,
 				5768867E202E21ED001FBE75 /* ChillZoneTests */,
 				57688689202E21ED001FBE75 /* ChillZoneUITests */,
@@ -120,13 +123,16 @@
 				57688698202E2862001FBE75 /* LoginViewController.swift */,
 				5768866A202E21EC001FBE75 /* AppDelegate.swift */,
 				5768866E202E21EC001FBE75 /* Main.storyboard */,
+				57E5280F2044F3E100AED835 /* PeopleDetailViewController.swift */,
 				578BD36F202EB0C200D26653 /* PeopleTableViewCell.swift */,
+				578BD36D202EB07000D26653 /* PeopleTableViewController.swift */,
 				576886A4202E3783001FBE75 /* LightsTableViewCell.swift */,
 				576886A2202E36D6001FBE75 /* LightHandler.swift */,
 				5768869C202E3076001FBE75 /* LightsViewController.swift */,
 				5768869E202E3081001FBE75 /* MenuViewController.swift */,
 				5768869A202E2A36001FBE75 /* User.swift */,
 				577E5200203D64AA002D65A8 /* IPManager.swift */,
+				5745ACBA20449E07000A880B /* ChatViewController.swift */,
 				57688671202E21EC001FBE75 /* Assets.xcassets */,
 				57688673202E21EC001FBE75 /* LaunchScreen.storyboard */,
 				57688676202E21EC001FBE75 /* Info.plist */,
@@ -290,10 +296,12 @@
 				57688699202E2862001FBE75 /* LoginViewController.swift in Sources */,
 				576886A3202E36D6001FBE75 /* LightHandler.swift in Sources */,
 				576886A5202E3783001FBE75 /* LightsTableViewCell.swift in Sources */,
+				57E528102044F3E100AED835 /* PeopleDetailViewController.swift in Sources */,
 				5768869F202E3081001FBE75 /* MenuViewController.swift in Sources */,
 				5768866B202E21EC001FBE75 /* AppDelegate.swift in Sources */,
 				577E5201203D64AA002D65A8 /* IPManager.swift in Sources */,
 				5768869B202E2A36001FBE75 /* User.swift in Sources */,
+				5745ACBB20449E07000A880B /* ChatViewController.swift in Sources */,
 				576886A1202E35C2001FBE75 /* Preset.swift in Sources */,
 				578BD36E202EB07000D26653 /* PeopleTableViewController.swift in Sources */,
 				5768869D202E3076001FBE75 /* LightsViewController.swift in Sources */,

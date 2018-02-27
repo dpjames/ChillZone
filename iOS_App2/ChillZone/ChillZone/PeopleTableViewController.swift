@@ -10,6 +10,9 @@ import UIKit
 
 class PeopleTableViewController: UITableViewController{
     private var people = ["David","Cameron","Hans","Ryan","Josh"];
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return (UIScreen.main.bounds.height - 20 - self.navigationController!.navigationBar.frame.height)/5;
+    }
     override func viewDidLoad() {
         super.viewDidLoad();
     
@@ -19,7 +22,9 @@ class PeopleTableViewController: UITableViewController{
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
-    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        performSegue(withIdentifier: "peopleDetail", sender: indexPath.row);
+    }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -45,7 +50,9 @@ class PeopleTableViewController: UITableViewController{
         return cell
     }
     
-
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        (segue.destination as! PeopleDetailViewController).setView(who: people[(sender as! Int)])
+    }
     /*
     // Override to support conditional editing of the table view.
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
@@ -90,5 +97,4 @@ class PeopleTableViewController: UITableViewController{
         // Pass the selected object to the new view controller.
     }
     */
-
 }
