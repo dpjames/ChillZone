@@ -2,6 +2,7 @@ var Express = require('express');
 var Tags = require('../Validator.js').Tags;
 var router = Express.Router({caseSensitive: true});
 var async = require('async');
+var ssnUtil = require('../Session.js');
 
 router.baseURL = '/Cnvs';
 
@@ -154,7 +155,7 @@ router.get('/:cnvId/Msgs', function(req, res) {
       msgs = msgs.filter(function(element) {
          return !(req.query.dateTime !== undefined 
                && !isNaN(parseInt(req.query.dateTime))
-               && parseInt(req.query.dateTime) < parseInt(element.whenMade));
+               && parseInt(req.query.dateTime) > parseInt(element.whenMade));
       });
       msgs.sort(function(first, second) {
          if (first.whenMade === second.whenMade) {
@@ -199,6 +200,8 @@ router.post('/:cnvId/Msgs', function(req, res) {
        [now, cnvId], cb);
    },
    function(inRes, fields, cb) {
+      ssnUtil.cometEmitter.emit("comet", {"path" : "/Cnvs/1/Msgs"});
+      ssnUtil.cometEmitter.removeAllListeners(["comet"]);
       res.end();
       cb();
    }],

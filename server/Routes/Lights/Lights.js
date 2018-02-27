@@ -38,7 +38,6 @@ router.post('/:light', function(req, res) {
       res.status(400).end();
       return;
    }
-
    const { exec } = require('child_process');
    exec('./lights '+n, (err, stdout, stderr) => {
      if (err) {
