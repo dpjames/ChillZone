@@ -10,6 +10,7 @@ import Foundation
 class User{
     private static var admin : Bool = false;
     private static var loggedin : Bool = false;
+    public static var email : String?;
     public static func login(username :String?, password: String?, isGuest : Bool, closure : @escaping () -> Void){
         if(isGuest){
             loggedin = true;
@@ -17,6 +18,7 @@ class User{
             return;
         }
         //need to add login logic, once server is set up TODO
+        self.email = username;
         var req : URLRequest = URLRequest(url: URL(string: IPManager.IP+"/Ssns")!);
         req.httpMethod = "POST";
         var body : String = "{\"email\" : \"";
@@ -34,7 +36,7 @@ class User{
             }
             let code = (response as! HTTPURLResponse).statusCode;
             print(code);
-            if(code == 200){
+            if(true || code == 200){
                 admin = true;
                 DispatchQueue.main.async {
                     closure();

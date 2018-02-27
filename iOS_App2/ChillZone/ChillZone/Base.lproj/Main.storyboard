@@ -196,7 +196,7 @@
                                 <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <color key="separatorColor" red="0.27942189574241638" green="0.59405535459518433" blue="0.94218051433563232" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" restorationIdentifier="presetcell" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="presetcell" id="R14-yw-6IT" customClass="LightsTableViewCell" customModule="ChillZone" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="presetcell" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="presetcell" id="R14-yw-6IT" customClass="LightsTableViewCell" customModule="ChillZone" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="414" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="R14-yw-6IT" id="XfA-Qi-Wdw">
@@ -360,15 +360,15 @@
                                 <rect key="frame" x="0.0" y="64" width="414" height="576"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="messageCell" id="PEm-9A-I7W">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="messageCell" id="PEm-9A-I7W" customClass="MessageTableViewCell" customModule="ChillZone" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="414" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="PEm-9A-I7W" id="yMg-eH-hYV">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="43.666666666666664"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="THE LAB" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c7B-bq-fWP">
-                                                    <rect key="frame" x="0.0" y="1" width="414" height="43.666666666666664"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="THE LAB" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c7B-bq-fWP">
+                                                    <rect key="frame" x="0.0" y="0.0" width="414" height="43.666666666666664"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="38"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -381,6 +381,9 @@
                                                 <constraint firstItem="c7B-bq-fWP" firstAttribute="width" secondItem="yMg-eH-hYV" secondAttribute="width" id="mM7-aT-UQ4"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="content" destination="c7B-bq-fWP" id="jeg-Tc-x23"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                                 <connections>
@@ -393,10 +396,16 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="19"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                <connections>
+                                    <outlet property="delegate" destination="pPL-j0-dII" id="emn-Bw-NUu"/>
+                                </connections>
                             </textView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hPX-dV-5kb">
                                 <rect key="frame" x="348" y="648" width="66" height="88"/>
-                                <state key="normal" title="Button"/>
+                                <state key="normal" title="Send"/>
+                                <connections>
+                                    <action selector="doSend:" destination="pPL-j0-dII" eventType="touchUpInside" id="qg6-AL-mXs"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -417,6 +426,7 @@
                         <viewLayoutGuide key="safeArea" id="cSm-q1-o5y"/>
                     </view>
                     <connections>
+                        <outlet property="composeMessage" destination="6hO-HU-QSS" id="tXM-db-vPC"/>
                         <outlet property="tableView" destination="Q00-Cb-lPq" id="afz-2N-C8k"/>
                     </connections>
                 </viewController>
@@ -496,6 +506,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="s9l-6K-cm2"/>
+        <segue reference="3bA-WG-QSb"/>
     </inferredMetricsTieBreakers>
 </document>

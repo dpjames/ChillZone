@@ -8,33 +8,51 @@
 
 import UIKit
 
-class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDelegate{
+class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UITextViewDelegate{
+    var messages : [Message] = [];
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 2;
+        return messages.count;
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "messageCell", for: indexPath);
+        let cell = tableView.dequeueReusableCell(withIdentifier: "messageCell", for: indexPath) as! MessageTableViewCell;
         // Configure the cell...
-        cell.textLabel!.text = String(indexPath.row);
+        //cell.textLabel!.text = String(indexPath.row);
+        //cell.content.text = "a very very very very very long text tstring that should exceep the row or something idk"
+        cell.content.text = messages[indexPath.row].content
+        print(User.email);
+        print(messages[indexPath.row].email);
+        cell.content.textAlignment = messages[indexPath.row].email == User.email! ? NSTextAlignment.right : NSTextAlignment.left;
         return cell
     }
     func scrollToBottom(){
         DispatchQueue.main.async {
-            let indexPath = IndexPath(row: 1, section: 0)
-            self.tableView.scrollToRow(at: indexPath, at: .bottom, animated: false)
+            if(self.messages.count > 0){
+                let indexPath = IndexPath(row: self.messages.count-1, section: 0)
+                self.tableView.scrollToRow(at: indexPath, at: .bottom, animated: false)
+            }
         }
     }
-
     @IBOutlet weak var tableView: UITableView!
     override func viewDidLoad() {
         super.viewDidLoad()
-        tableView.reloadData()
-        scrollToBottom();
+        
+        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.estimatedRowHeight = 140
+        MessageHandler.setUp(vc: self)
+        MessageHandler.comet();
+        MessageHandler.getAllMessages()
+        
         // Do any additional setup after loading the view.
     }
     
-   
+    @IBOutlet weak var composeMessage: UITextView!
+    @IBAction func doSend(_ sender: UIButton) {
+        print(composeMessage.text!)
+        print("look above!!!");
+        MessageHandler.sendMessage(content: composeMessage.text!);
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
