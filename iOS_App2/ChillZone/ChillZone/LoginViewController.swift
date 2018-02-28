@@ -9,13 +9,24 @@
 import UIKit
 
 class LoginViewController: UIViewController, UITextViewDelegate {
-
+    private static let docDir = FileManager().urls(for: .documentDirectory, in: .userDomainMask).first!
+    private static let archURL = docDir.appendingPathComponent("savedLogin");
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        if let userinfo = NSKeyedUnarchiver.unarchiveObject(withFile: LoginViewController.archURL.path) as? [String:String]{
+            User.login(username: userinfo["username"], password: userinfo["password"], isGuest: false){
+                self.performSegue(withIdentifier: "loginseg", sender: self);
+            }
+        }
         // Do any additional setup after loading the view.
     }
-
+    static func logout(){
+        do{
+            try FileManager().removeItem(atPath: LoginViewController.archURL.path);
+        }catch{
+            print ("an error happened in logout");
+        }
+    }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -26,6 +37,10 @@ class LoginViewController: UIViewController, UITextViewDelegate {
     @IBAction func loginClick(_ sender: UIButton) {
         User.login(username: usernameField.text, password: passwordField.text, isGuest: false) {()->Void in
             if(User.isAdmin()){
+                var credentials : [String : String] = [:];
+                credentials["username"] = self.usernameField.text;
+                credentials["password"] = self.passwordField.text;
+                NSKeyedArchiver.archiveRootObject(credentials, toFile: LoginViewController.archURL.path);
                 self.performSegue(withIdentifier: "loginseg", sender: self);
             }
         }

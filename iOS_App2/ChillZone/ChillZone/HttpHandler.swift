@@ -8,12 +8,14 @@
 
 import Foundation
 class HttpHandler {
-    static func request(method : String, path : String, body : String, callback : @escaping (Data?, URLResponse?, Error?) -> Void){
+    static func request(method : String, path : String, body : String, callback : @escaping (Data?, URLResponse?, Error?) -> Void) -> URLSessionDataTask{
         let url = URL(string: IPManager.IP+path);
         var req = URLRequest(url: url!);
         req.httpMethod = method;
         req.httpBody = body.data(using: String.Encoding.utf8);
         req.setValue("application/json", forHTTPHeaderField: "Content-Type")
-        URLSession.shared.dataTask(with: req, completionHandler: callback).resume();
+        let task = URLSession.shared.dataTask(with: req, completionHandler: callback);
+        task.resume()
+        return task;
     }
 }
