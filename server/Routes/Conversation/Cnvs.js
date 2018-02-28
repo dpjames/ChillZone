@@ -165,8 +165,8 @@ router.get('/:cnvId/Msgs', function(req, res) {
             return first.whenMade < second.whenMade ? -1 : 1;
          }
       });
-      msgs = msgs.splice(0, req.query.num || msgs.length);
-
+      msgs = msgs.splice(msgs.length - (req.query.num || msgs.length), msgs.length);
+      console.log(msgs);
       res.json(msgs);
       cb();
    }],
