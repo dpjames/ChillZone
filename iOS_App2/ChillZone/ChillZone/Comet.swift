@@ -10,8 +10,15 @@ import Foundation
 class Comet {
     private static var key : String = "";
     private static var callback : () -> Void = {};
+    private static var theRequest : URLSessionDataTask?;
+    private static var killflag : Bool = false;
     public static func comet(){
-        HttpHandler.request(method: "GET", path: "/Comet", body: ""){(data,response,error) in
+        theRequest = HttpHandler.request(method: "GET", path: "/Comet", body: ""){(data,response,error) in
+            if(killflag){
+                print("finally dead");
+                killflag = false;
+                return;
+            }
             if(data == nil){
                 comet();
                 return;
@@ -23,6 +30,14 @@ class Comet {
                 callback();
             }
             comet();
+        }
+    }
+    public static func kill(){
+        print("kill!")
+        killflag = true;
+        if(theRequest != nil){
+            print("canceling")
+            theRequest!.cancel();
         }
     }
     public static func reset(){

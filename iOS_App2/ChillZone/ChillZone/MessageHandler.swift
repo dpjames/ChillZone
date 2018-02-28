@@ -13,18 +13,23 @@ class MessageHandler{
         viewController = vc;
     }
     static func getAllMessages(){
-        getMessages(since: 0)
+        viewController?.messages = [];
+        getMessages(since: 0, all : true)
     }
-    static func getMessages(since time : Double){
+    static func getMessages(since time : Double, all : Bool){
         print(time);
-        HttpHandler.request(method: "GET", path: "/Cnvs/1/Msgs?dateTime="+String(time), body: ""){(data, response, error) in
+        var path : String = "/Cnvs/1/Msgs?dateTime="+String(describing: time);
+        if(!all){
+            path+=("&num=100");
+        }
+        HttpHandler.request(method: "GET", path: path, body: ""){(data, response, error) in
             if(data == nil){
                 print("no data")
                 return;
             }
             do{
-                print("bellow my dudes")
-                print(String(describing: data));
+                //print("bellow my dudes")
+                //print(String(describing: data));
                 let decoder = JSONDecoder();
                 var vals = try decoder.decode(Array<Message>.self, from : data!);
                 print(vals);
@@ -33,7 +38,7 @@ class MessageHandler{
                 }
                 DispatchQueue.main.async {
                     viewController!.messages.append(contentsOf: vals)
-                    print("going to scroll with \(viewController!.messages.count)")
+                    //print("going to scroll with \(viewController!.messages.count)")
                     viewController!.tableView.reloadData();
                     viewController!.scrollToBottom()
                 }

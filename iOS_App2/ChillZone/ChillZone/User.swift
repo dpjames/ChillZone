@@ -49,4 +49,10 @@ class User{
     public static func isAdmin() -> Bool{
         return admin;
     }
+    public static func logout(){
+        admin = false;
+        loggedin = false;
+        email = "";
+        LoginViewController.logout();
+    }
 }

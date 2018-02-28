@@ -15,7 +15,8 @@ class MessageTableViewCell: UITableViewCell {
         // Initialization code
     }
 
-    @IBOutlet weak var content: UILabel!
+    @IBOutlet weak var left: UILabel!
+    @IBOutlet weak var right: UILabel!
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
