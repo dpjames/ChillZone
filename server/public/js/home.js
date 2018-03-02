@@ -68,7 +68,7 @@ $.makeToggles = function(where) {
     '<span class="slider round"></span></label>'));
    temp.append($("</br>"));
    temp.append($("<span class='button-name'>globe</span>"));
-   $("#globe").click($.lights.toggle("globe"));
+   $("#globediv").click($.lights.toggle("globe"));
    where.append(temp);
 
    temp = $("<div id='readingdiv'></div>"); 

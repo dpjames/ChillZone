@@ -37,12 +37,13 @@ app.use(function(req, res, next) {
 });
 
 app.use(CnnPool.router);
-app.use('/Prss', require('./Routes/Account/Prss.js'));
-app.use('/Ssns', require('./Routes/Account/Ssns.js'));
-app.use('/Cnvs', require('./Routes/Conversation/Cnvs.js'));
-app.use('/Msgs', require('./Routes/Conversation/Msgs.js'));
-app.use('/Comet', require('./Routes/Comet/Comet.js'));
+app.use('/Prss',   require('./Routes/Account/Prss.js'));
+app.use('/Ssns',   require('./Routes/Account/Ssns.js'));
+app.use('/Cnvs',   require('./Routes/Conversation/Cnvs.js'));
+app.use('/Msgs',   require('./Routes/Conversation/Msgs.js'));
+app.use('/Comet',  require('./Routes/Comet/Comet.js'));
 app.use('/Lights', require('./Routes/Lights/Lights.js'));
+app.use('/Chores', require('./Routes/Chores/Chores.js'));
 
 app.delete('/DB', function(req, res) {
    if (!req.session.isAdmin()){
@@ -51,14 +52,14 @@ app.delete('/DB', function(req, res) {
       return;
    }
    
-   var cbs = ["Conversation", "Message", "Person"].map(function(tblName) {
+   var cbs = ["Conversation", "Message", "Person", "Chores"].map(function(tblName) {
       return function(cb) {
          req.cnn.query("delete from " + tblName, cb);
       };
    });
 
    
-   cbs = cbs.concat(["Conversation", "Message", "Person"].map(function(tblName) {
+   cbs = cbs.concat(["Conversation", "Message", "Person", "Chores"].map(function(tblName) {
       return function(cb) {
          req.cnn.query("alter table " + tblName + " auto_increment = 1", cb);
       };

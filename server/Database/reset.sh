@@ -1,2 +1,2 @@
 #!/bin/bash
-mysql -u root -p < Init.sql
+mysql -u david -p < Init.sql

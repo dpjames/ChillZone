@@ -35,6 +35,15 @@ create table Message (
    constraint FKMessage_prsId foreign key (prsId) references Person(id)
     on delete cascade
 );
+create table Chores (
+   id int auto_increment primary key,
+   name varchar(100),
+   description varchar(5000),
+   startTime datetime not null,
+   duration int not null,
+   owner varchar(100),
+   isRecurring int not null
+);
 
 insert into Person (firstName, lastName, email,       password,   whenRegistered, role)
             VALUES ("Joe",     "Admin", "adm@11.com", "password", NOW(), 1);
