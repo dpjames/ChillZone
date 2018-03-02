@@ -30,7 +30,7 @@ $.comet = function(){
       if(data['path'] === "/Lights"){
          $.lights.updateLights();
       }else if(data['path'] == "/Cnvs/1/Msgs"){
-         $.message.updateMessages();
+         $.message.updatemessages();
       }
       $.comet();
    });
@@ -40,17 +40,19 @@ $.message= {};
 
 $.message.updatemessages = function(){
    console.log("mess");
-   $.request("get", "/cnvs/1/msgs", null, function(data){
-      if(data.length != 0){
-         $("#chatview").val("");
-         data.foreach(function(e){
-            $("#chatview").val($("#chatview").val()+(e.content+"\n"))
+   $.request("get", "/Cnvs/1/Msgs", null, function(data){
+      if(data && data.length != 0){
+         $("#content").val("");
+         data.forEach(function(e){
+            $("#content").val($("#content").val()+(e.content+"\n"))
          });
+        $("#content").scrollTop($("#content")[0].scrollHeight);
       }
    });
 }
 $.message.send = function(){  
    $.request("POST", "/Cnvs/1/Msgs", {"content" : $("#compose").val()}, function(){}); 
+   $("#compose").val("");
 }
 $.user = {};
 $.user.login = function(){
@@ -58,6 +60,7 @@ $.user.login = function(){
    body['email'] = $("#username").val();
    body['password'] = $("#password").val();
    $.request("POST", "/Ssns", body, function(){});
+   $.message.updatemessages();
 }
 $.makeToggles = function(where) {
    var temp = $("<div id='globediv'></div>"); 
@@ -68,7 +71,7 @@ $.makeToggles = function(where) {
    $("#globe").click($.lights.toggle("globe"));
    where.append(temp);
 
-   var temp = $("<div id='readingdiv'></div>"); 
+   temp = $("<div id='readingdiv'></div>"); 
    temp.append($('<label class="switch"><input id="reading" type="checkbox">'+
     '<span class="slider round"></span></label>'));
    temp.append($("</br>"));
@@ -76,7 +79,7 @@ $.makeToggles = function(where) {
    $("#reading").click($.lights.toggle("reading"));
    where.append(temp);
 
-   var temp = $("<div id='ambientdiv'></div>"); 
+   temp = $("<div id='ambientdiv'></div>"); 
    temp.append($('<label class="switch"><input id="ambient" type="checkbox">'+
     '<span class="slider round"></span></label>'));
    temp.append($("</br>"));
@@ -84,12 +87,25 @@ $.makeToggles = function(where) {
    $("#ambient").click($.lights.toggle("ambient"));
    where.append(temp);
 }
-
+$.makeChat = function(where){
+   var container = $("<div id='chat'></div>");
+   container.append($("<textarea id='content'></textarea>"));
+   container.append($("<input id='compose' type='text'></input>").             
+         keypress(function(e){
+            if(e.which == 13){
+               $.message.send();
+            }
+         }));
+   container.append($("<button id='send'>send</button>").click($.message.send));
+   where.append(container);
+}
 $(document).ready(function(){
-   var main = $("#togglediv");
+   var main = $("#maindiv");
+   var lights = $("#togglediv");
    $("#login").click($.user.login);
-   $.makeToggles(main);
+   $.makeToggles(lights);
    $.lights.updateLights();
+   $.makeChat(main);
    $.comet();
 
 });

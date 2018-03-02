@@ -55,13 +55,50 @@ input:checked + .slider:before {
 .slider.round:before {
   border-radius: 50%;
 }
+
+
+
 .button-name{
    font-size : 30px;
 }
-#togglediv {
-   width: 70px;
-}
 
+
+
+
+
+#maindiv{
+   height:600px;;
+   margin-bottom:20px;
+}
+#togglediv {
+   width: 10%;
+   float:left;
+   height:100%;
+   background-color : rgba(0,0,0,0.4);
+}
+#chat {
+   width :90%;
+   height:100%;
+   float:left;
+}
+#content{
+   height:95%;
+   width:100%;
+   overflow:scroll;
+}
+#compose{
+   float:left;
+   width:95%;
+   height:5%;
+}
+#send{
+   float:left;
+   width:4%;
+   height:5%;
+}
+#loginfields {
+   clear : both;
+}
 
 
 
