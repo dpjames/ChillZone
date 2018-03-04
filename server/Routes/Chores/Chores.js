@@ -8,7 +8,11 @@ router.get("/", function(req,res){
    var cnn = req.cnn;
    cnn.chkQry("select * from Chores", null, function(err, tab){
       cnn.release();
-      res.json(tab[0]); 
+      tab = tab.map(function(e){
+         e.startTime = new Date(e.startTime).getTime();
+         return e;
+      });
+      res.json(tab); 
    });
 });
 router.post('/:person', function(req, res){
@@ -56,7 +60,28 @@ router.delete('/:id', function(req,res){
    });
    
 });
+router.put('/chown/:id', function(req, res){
+   var body = req.body;
+   var cnn = req.cnn;
+   var vld = req.validator;
+   var id = req.params.id;
 
+   async.waterfall(
+   [
+   function(cb){
+      if(vld.onlyHasFields(body, ["owner"], cb)){
+         cnn.chkQry("update Chores set ?? = ?, startTime = ? where id = ?", ["owner", body.owner,new Date(), id], cb);
+      }
+   },
+   function(result, fields, cb){
+      res.status(200).end();
+      cb();
+   }
+   ],
+   function(err){
+      cnn.release();
+   });
+});
 
 
 module.exports = router;
