@@ -525,13 +525,42 @@
                     <view key="view" contentMode="scaleToFill" id="27q-3y-9xL">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="CBJ-BU-A1b">
+                                <rect key="frame" x="0.0" y="32" width="414" height="736"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="choreCell" id="jIE-eP-YSk">
+                                        <rect key="frame" x="0.0" y="28" width="414" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="jIE-eP-YSk" id="afc-hw-eiZ">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="43.666666666666664"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="c62-OE-Hvv" id="2br-h2-mcq"/>
+                                    <outlet property="delegate" destination="c62-OE-Hvv" id="SoA-BT-45Z"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="CBJ-BU-A1b" firstAttribute="height" secondItem="27q-3y-9xL" secondAttribute="height" id="3Ff-my-XYO"/>
+                            <constraint firstItem="CBJ-BU-A1b" firstAttribute="width" secondItem="27q-3y-9xL" secondAttribute="width" id="afy-NI-wLJ"/>
+                            <constraint firstItem="CBJ-BU-A1b" firstAttribute="centerY" secondItem="ORK-oH-gdp" secondAttribute="centerY" id="jFv-NQ-M1C"/>
+                            <constraint firstItem="CBJ-BU-A1b" firstAttribute="centerX" secondItem="ORK-oH-gdp" secondAttribute="centerX" id="zmf-iR-Ve5"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="ORK-oH-gdp"/>
                     </view>
+                    <connections>
+                        <outlet property="table" destination="CBJ-BU-A1b" id="vJf-Br-DKt"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wxn-DQ-aYL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3458" y="117"/>
+            <point key="canvasLocation" x="3457.971014492754" y="116.57608695652175"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>

@@ -8,15 +8,30 @@
 
 import UIKit
 
-class PeopleDetailViewController: UIViewController {
+class PeopleDetailViewController: UIViewController, UITableViewDelegate, UITableViewDataSource{
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 1
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "choreCell", for: indexPath);
+        cell.textLabel?.text = chores[indexPath.section].name;
+        return cell;
+    }
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return chores.count
+    }
     var who : String?;
+    var chores : [Chore] = [];
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = who!;
-
+        ChoreHandler.setup(view: self);
+        ChoreHandler.getChores(for : who!);
         // Do any additional setup after loading the view.
     }
-
+    @IBOutlet weak var table: UITableView!
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
