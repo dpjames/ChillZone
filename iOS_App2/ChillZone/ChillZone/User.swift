@@ -23,7 +23,7 @@ class User{
         body+="\", \"password\" : \""
         body+=password!;
         body+="\"}"
-        HttpHandler.request(method: "POST", path: "/Ssns", body: body){(data, response, error) in
+        let _ = HttpHandler.request(method: "POST", path: "/Ssns", body: body){(data, response, error) in
             if(data == nil){
                 return;
             }

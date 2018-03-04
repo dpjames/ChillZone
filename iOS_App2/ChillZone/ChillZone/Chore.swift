@@ -14,4 +14,14 @@ struct Chore: Codable{
     var startTime : Double;
     var isRecurring : Int;
     var owner : String;
+    var id : Int;
+    init(name : String, description : String, duration : Double, isRecurring: Int, owner : String){
+        self.name = name;
+        self.description = description;
+        self.duration = duration;
+        self.isRecurring = isRecurring
+        self.owner = owner;
+        id = -1;
+        startTime = -1;
+    }
 }

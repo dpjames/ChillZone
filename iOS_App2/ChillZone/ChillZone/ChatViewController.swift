@@ -34,7 +34,7 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
             cell.right.layer.masksToBounds = true;
             cell.left.layer.cornerRadius = 10.0;
             cell.right.layer.cornerRadius = 10.0;
-            if(messages[indexPath.section-1].email == User.email!){
+            if(messages[indexPath.section-1].email.caseInsensitiveCompare(User.email!) == ComparisonResult.orderedSame){
                 cell.right.text = messages[indexPath.section-1].email + ":\n" + messages[indexPath.section-1].content
                 cell.right.backgroundColor = UIColor.cyan;
                 cell.left.backgroundColor = UIColor.clear;
