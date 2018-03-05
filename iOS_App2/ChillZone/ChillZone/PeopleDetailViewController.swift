@@ -32,6 +32,11 @@ class PeopleDetailViewController: UIViewController, UITableViewDelegate, UITable
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if(indexPath.section == chores.count){
             performSegue(withIdentifier: "addSeg", sender: nil)
+        }else{
+            print("yeeess")
+            if(chores[indexPath.section].notify == 1 && User.email?.caseInsensitiveCompare(who!) == ComparisonResult.orderedSame){
+                ChoreHandler.dismiss(chore: chores[indexPath.section].id, who : who!);
+            }
         }
     }
     func numberOfSections(in tableView: UITableView) -> Int {

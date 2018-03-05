@@ -28,15 +28,23 @@ class ChoreTableViewCell: UITableViewCell {
         nameLabel.text = theChore!.name;
         daysLeftLabel.text = findDays(start: theChore!.startTime, length: theChore!.duration);
         let label = isMine ? "Done" : "Notify"
+        
+        if(theChore!.notify == 1 || Int(daysLeftLabel.text!)! < 0){
+            self.backgroundColor = UIColor.init(red: 255, green: 0, blue: 0, alpha: 0.4);
+        }else{
+            self.backgroundColor = UIColor.white;
+        }
+        self.selectionStyle = .none;
         //actionButton.titleLabel!.text = "hello wolrd";
         actionButton.setTitle(label, for: UIControlState.normal)
     }
     private func findDays(start : Double, length : Double) -> String{
         let curtime = Date().timeIntervalSince1970 * 1000;
         var timeLeft = (start + length) - curtime;
-        let neg = timeLeft < 0;
+        var neg = timeLeft < 0;
         timeLeft = abs(timeLeft);
-        let daysLeft = Int(floor(timeLeft/86400));
+        let daysLeft = Int(floor(timeLeft/86400000));
+        neg = daysLeft == 0 ? false : neg;
         var ret = String(daysLeft);
         print("below")
         print(curtime);
@@ -53,6 +61,19 @@ class ChoreTableViewCell: UITableViewCell {
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var actionButton: UIButton!
     @IBAction func actionButtonClick(_ sender: UIButton) {
-        
+        if(isMine){
+            print("do a done")
+            //print(theChore!.isRecurring)
+            
+            if(theChore!.isRecurring == 1){
+                //Peo.people
+                let index = PeopleTableViewController.people.index(of: theChore!.owner)
+                ChoreHandler.push(chore: theChore!, to: PeopleTableViewController.people[(index!+1)%PeopleTableViewController.people.count]);
+            }else{
+                ChoreHandler.remove(chore: theChore!.id, who: theChore!.owner)
+            }
+        }else{
+            ChoreHandler.notify(chore: theChore!.id, who : theChore!.owner);
+        }
     }
 }

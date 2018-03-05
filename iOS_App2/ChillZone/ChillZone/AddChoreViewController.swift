@@ -12,7 +12,7 @@ class AddChoreViewController: UIViewController, UITextFieldDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        isRepeating.isOn = false;
         // Do any additional setup after loading the view.
     }
     var who : String?
@@ -28,15 +28,16 @@ class AddChoreViewController: UIViewController, UITextFieldDelegate {
             print("bad input")
             return;
         }
-        let duration : Double = Double(days!) * 86400;
-        let chore : Chore = Chore(name : name!, description : description!, duration : duration, isRecurring : isRepeating.isOn ? 0 : 1, owner : who!);
+        let duration : Double = Double(days!) * 86400000;
+        let chore : Chore = Chore(name : name!, description : description!, duration : duration, isRecurring : isRepeating.isOn ? 1 : 0, owner : who!);
         ChoreHandler.add(chore: chore);
-        //ChoreHandler.getChores(for: who!);
-        print("I AM DONE!")
-        
-    }
-    @IBAction func cancelClick(_ sender: UIButton) {
-    
+        choreName.text = "";
+        isRepeating.isOn = false;
+        daysToComplete.text = "";
+        choreDescirption.text = "";
+        let alert = UIAlertController(title: "Add", message: "Chore Added", preferredStyle: UIAlertControllerStyle.alert)
+        alert.addAction(UIAlertAction(title: "Okay", style: .default));
+        self.present(alert, animated : true, completion : nil)
     }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

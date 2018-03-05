@@ -37,10 +37,11 @@ class ChoreHandler {
     }
     static func push(chore c : Chore, to user : String){
         let body = "{ \"owner\" : \"" + user + "\"}";
-        let _ =  HttpHandler.request(method: "PUT", path: "/Chores/chown"+String(c.id), body: body) { (data, response, error) in
+        let _ =  HttpHandler.request(method: "PUT", path: "/Chores/chown/"+String(c.id), body: body) { (data, response, error) in
             let code = (response as! HTTPURLResponse).statusCode;
             if(code == 200){
                 print("it does work")
+                getChores(for: c.owner);
             }else{
                 print("it does not work")
             }
@@ -55,9 +56,6 @@ class ChoreHandler {
         body+="}"
         let _ = HttpHandler.request(method: "POST", path: "/Chores/"+c.owner, body: body) { (data, response, error) in
             print("I am inside")
-            print(String(data: data!, encoding : String.Encoding.utf8));
-            print(response);
-            print(error);
             let code = (response as! HTTPURLResponse).statusCode;
 
             if(code == 200){
@@ -68,11 +66,35 @@ class ChoreHandler {
             }
         }
     }
-    static func remove(chore id : Int){
+    static func remove(chore id : Int, who : String){
         let _ = HttpHandler.request(method: "DELETE", path: "/Chores/"+String(id), body: ""){ (data, response, error) in
             let code = (response as! HTTPURLResponse).statusCode;
             if(code == 200){
                 print("it worked")
+                getChores(for: who)
+            }else{
+                print("it did not work")
+            }
+        }
+    }
+    static func notify(chore id: Int, who : String){
+        let _ = HttpHandler.request(method: "PUT", path: "/Chores/notify/"+String(id), body: ""){ (data, response, error) in
+            let code = (response as! HTTPURLResponse).statusCode;
+            if(code == 200){
+                print("it worked")
+                getChores(for: who)
+            }else{
+                print("it did not work")
+            }
+        }
+    }
+    static func dismiss(chore id : Int, who : String){
+        let _ = HttpHandler.request(method: "PUT", path: "/Chores/dismiss/"+String(id), body: ""){ (data, response, error) in
+            let code = (response as! HTTPURLResponse).statusCode;
+            if(code == 200){
+                print("it worked")
+                print("getting the chores")
+                getChores(for: who)
             }else{
                 print("it did not work")
             }

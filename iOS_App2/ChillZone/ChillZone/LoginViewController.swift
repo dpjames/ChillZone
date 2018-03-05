@@ -32,6 +32,11 @@ class LoginViewController: UIViewController, UITextViewDelegate {
         // Dispose of any resources that can be recreated.
     }
     
+    @IBAction func helpClick(_ sender: UIButton) {
+        let help = UIAlertController(title: "Help", message: "Login. If you dont have login credentials tap guest.", preferredStyle: .alert);
+        help.addAction(UIAlertAction(title: "Okay", style: .default, handler: nil))
+        self.present(help, animated : true, completion: nil)
+    }
     @IBOutlet weak var usernameField: UITextField!
     @IBOutlet weak var passwordField: UITextField!
     @IBAction func loginClick(_ sender: UIButton) {
