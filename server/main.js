@@ -68,8 +68,8 @@ app.delete('/DB', function(req, res) {
    
    cbs.push(function(cb) {
       req.cnn.query('INSERT INTO Person (firstName, lastName, email,' +
-          ' password, whenRegistered, role) VALUES ' +
-          '("Joe", "Admin", "adm@11.com","password", NOW(), 1);', cb);
+          ' password, whenRegistered, role, isHome) VALUES ' +
+          '("Joe", "Admin", "adm@11.com","password", NOW(), 1, 0);', cb);
    });
 
    

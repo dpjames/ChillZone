@@ -26,7 +26,7 @@ router.post('/:person', function(req, res){
          body.startTime = new Date();  
          body.owner = person;
          cnn.chkQry("insert into Chores set name=?, description=?, " +
-               "duration=?, isRecurring=?, startTime=?, owner=?;",
+               "duration=?, isRecurring=?, startTime=?, owner=?, notify=1;",
                [body.name, body.description, body.duration, body.isRecurring, 
                body.startTime, body.owner], cb);
       }
@@ -70,7 +70,7 @@ router.put('/chown/:id', function(req, res){
    [
    function(cb){
       if(vld.onlyHasFields(body, ["owner"], cb)){
-         cnn.chkQry("update Chores set ?? = ?, startTime = ? where id = ?", ["owner", body.owner,new Date(), id], cb);
+         cnn.chkQry("update Chores set ?? = ?, startTime = ?, notify = 1 where id = ?", ["owner", body.owner,new Date(), id], cb);
       }
    },
    function(result, fields, cb){
@@ -82,6 +82,42 @@ router.put('/chown/:id', function(req, res){
       cnn.release();
    });
 });
+router.put('/notify/:id', function(req,res){
+   var cnn = req.cnn;
+
+   async.waterfall(
+   [
+   function(cb){
+      cnn.chkQry("update Chores set notify = 1 where id = ?",[req.params.id],cb);
+   },
+   function(result, fields, cb){
+      res.status(200).end();
+      cb();
+   }
+   ],
+   function(error){
+      cnn.release();
+   });
+});
+router.put('/dismiss/:id', function(req,res){
+   var cnn = req.cnn;
+
+   async.waterfall(
+   [
+   function(cb){
+      cnn.chkQry("update Chores set notify = 0 where id = ?",[req.params.id],cb);
+   },
+   function(result, fields, cb){
+      res.status(200).end();
+      cb();
+   }
+   ],
+   function(error){
+      cnn.release();
+   });
+});
+
+
 
 
 module.exports = router;
