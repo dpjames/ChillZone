@@ -13,11 +13,7 @@ class LoginViewController: UIViewController, UITextViewDelegate {
     private static let archURL = docDir.appendingPathComponent("savedLogin");
     override func viewDidLoad() {
         super.viewDidLoad()
-        if let userinfo = NSKeyedUnarchiver.unarchiveObject(withFile: LoginViewController.archURL.path) as? [String:String]{
-            User.login(username: userinfo["username"], password: userinfo["password"], isGuest: false){
-                self.performSegue(withIdentifier: "loginseg", sender: self);
-            }
-        }
+        print("inside")
         // Do any additional setup after loading the view.
     }
     static func logout(){

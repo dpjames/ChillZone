@@ -83,7 +83,12 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
         }
         NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillHide), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
-
+        let button = UIBarButtonItem(barButtonSystemItem: .refresh, target: self, action : #selector(loadAll));
+        navigationItem.rightBarButtonItem = button;
+        
+    }
+    @objc private func loadAll(){
+        MessageHandler.getAllMessages();
     }
     @objc func keyboardWillShow(notification: NSNotification) {
         if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
@@ -94,7 +99,7 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
     }
     
     @objc func keyboardWillHide(notification: NSNotification) {
-        if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
+        if let _ = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
             if self.view.frame.origin.y != 0{
                 self.view.frame.origin.y = 0;
             }

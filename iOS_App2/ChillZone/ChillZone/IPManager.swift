@@ -9,7 +9,10 @@
 import Foundation
 class IPManager{
     //static var IP : String = "http://192.168.1.21:4011";
-    //static var IP : String = "http://192.168.160.1:4011";
-    static var IP : String = "http://192.168.1.111:4011";
+    static var IP : String = "http://192.168.160.1:4011";
+    //static var IP : String = "http://192.168.1.111:4011";
+    static func createIP(){
+        
+    }
 
 }

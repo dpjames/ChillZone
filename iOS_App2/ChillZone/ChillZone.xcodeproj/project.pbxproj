@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		571ECFCC2049E6F3000AB2E9 /* AutoLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 571ECFCB2049E6F3000AB2E9 /* AutoLoginViewController.swift */; };
 		5737BAF72045168500F31FDB /* MessageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5737BAF62045168500F31FDB /* MessageTableViewCell.swift */; };
 		5737BAF9204518F900F31FDB /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5737BAF8204518F900F31FDB /* Message.swift */; };
 		5737BAFB20451A7100F31FDB /* MessageHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5737BAFA20451A7100F31FDB /* MessageHandler.swift */; };
@@ -54,6 +55,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		571ECFCB2049E6F3000AB2E9 /* AutoLoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutoLoginViewController.swift; sourceTree = "<group>"; };
 		5737BAF62045168500F31FDB /* MessageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageTableViewCell.swift; sourceTree = "<group>"; };
 		5737BAF8204518F900F31FDB /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		5737BAFA20451A7100F31FDB /* MessageHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageHandler.swift; sourceTree = "<group>"; };
@@ -142,6 +144,7 @@
 				57688698202E2862001FBE75 /* LoginViewController.swift */,
 				5768866A202E21EC001FBE75 /* AppDelegate.swift */,
 				5768866E202E21EC001FBE75 /* Main.storyboard */,
+				571ECFCB2049E6F3000AB2E9 /* AutoLoginViewController.swift */,
 				573E2008204BD65300A33A87 /* AddChoreViewController.swift */,
 				573E2006204BB9DF00A33A87 /* ChoreTableViewCell.swift */,
 				573E20022049F14F00A33A87 /* Chore.swift */,
@@ -323,6 +326,7 @@
 				57688699202E2862001FBE75 /* LoginViewController.swift in Sources */,
 				5737BAFB20451A7100F31FDB /* MessageHandler.swift in Sources */,
 				576886A3202E36D6001FBE75 /* LightHandler.swift in Sources */,
+				571ECFCC2049E6F3000AB2E9 /* AutoLoginViewController.swift in Sources */,
 				573E2009204BD65300A33A87 /* AddChoreViewController.swift in Sources */,
 				573E20052049F80B00A33A87 /* ChoreHandler.swift in Sources */,
 				576886A5202E3783001FBE75 /* LightsTableViewCell.swift in Sources */,

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="gDN-i6-JtN">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="S5a-6m-ZkO">
     <device id="retina5_5" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -25,6 +25,25 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9fh-Iv-wLw" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="644" y="118"/>
+        </scene>
+        <!--Auto Login View Controller-->
+        <scene sceneID="6gv-aM-A5Z">
+            <objects>
+                <viewController id="S5a-6m-ZkO" customClass="AutoLoginViewController" customModule="ChillZone" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="wPr-3F-b06">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="WdR-Wb-U4M"/>
+                    </view>
+                    <connections>
+                        <segue destination="25H-BP-oV5" kind="show" identifier="autoLoginSeg" id="tSr-Hm-iGs"/>
+                        <segue destination="gDN-i6-JtN" kind="show" identifier="toLoginSeg" id="NCP-XQ-M9F"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ng7-P6-FJY" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-313.04347826086956" y="-694.56521739130437"/>
         </scene>
         <!--Login View Controller-->
         <scene sceneID="suq-b3-dwS">
@@ -152,7 +171,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Zl7-oU-8tg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-311.19999999999999" y="118.29085457271366"/>
+            <point key="canvasLocation" x="643" y="-695"/>
         </scene>
         <!--Lights-->
         <scene sceneID="ZYv-hK-aCi">
@@ -299,7 +318,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LjS-Ga-e8n" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1573.913043478261" y="-594.29347826086962"/>
+            <point key="canvasLocation" x="1577" y="-663"/>
         </scene>
         <!--Main Menu-->
         <scene sceneID="d43-lJ-y6p">
@@ -770,6 +789,8 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="3bA-WG-QSb"/>
+        <segue reference="s9l-6K-cm2"/>
+        <segue reference="NCP-XQ-M9F"/>
+        <segue reference="tSr-Hm-iGs"/>
     </inferredMetricsTieBreakers>
 </document>
