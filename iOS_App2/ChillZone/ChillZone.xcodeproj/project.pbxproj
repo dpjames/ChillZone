@@ -34,6 +34,8 @@
 		577E5201203D64AA002D65A8 /* IPManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 577E5200203D64AA002D65A8 /* IPManager.swift */; };
 		578BD36E202EB07000D26653 /* PeopleTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 578BD36D202EB07000D26653 /* PeopleTableViewController.swift */; };
 		578BD370202EB0C200D26653 /* PeopleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 578BD36F202EB0C200D26653 /* PeopleTableViewCell.swift */; };
+		57E51D7E205075FC008A93D9 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 57E51D7D205075FC008A93D9 /* MapKit.framework */; };
+		57E51D8020507CB8008A93D9 /* LocationHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57E51D7F20507CB8008A93D9 /* LocationHandler.swift */; };
 		57E528102044F3E100AED835 /* PeopleDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57E5280F2044F3E100AED835 /* PeopleDetailViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -88,6 +90,8 @@
 		577E5200203D64AA002D65A8 /* IPManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IPManager.swift; sourceTree = "<group>"; };
 		578BD36D202EB07000D26653 /* PeopleTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeopleTableViewController.swift; sourceTree = "<group>"; };
 		578BD36F202EB0C200D26653 /* PeopleTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeopleTableViewCell.swift; sourceTree = "<group>"; };
+		57E51D7D205075FC008A93D9 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		57E51D7F20507CB8008A93D9 /* LocationHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationHandler.swift; sourceTree = "<group>"; };
 		57E5280F2044F3E100AED835 /* PeopleDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeopleDetailViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -96,6 +100,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				57E51D7E205075FC008A93D9 /* MapKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -123,6 +128,7 @@
 				5768867E202E21ED001FBE75 /* ChillZoneTests */,
 				57688689202E21ED001FBE75 /* ChillZoneUITests */,
 				57688668202E21EC001FBE75 /* Products */,
+				57E51D7C205075FB008A93D9 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -143,6 +149,7 @@
 				576886A0202E35C2001FBE75 /* Preset.swift */,
 				57688698202E2862001FBE75 /* LoginViewController.swift */,
 				5768866A202E21EC001FBE75 /* AppDelegate.swift */,
+				57E51D7F20507CB8008A93D9 /* LocationHandler.swift */,
 				5768866E202E21EC001FBE75 /* Main.storyboard */,
 				571ECFCB2049E6F3000AB2E9 /* AutoLoginViewController.swift */,
 				573E2008204BD65300A33A87 /* AddChoreViewController.swift */,
@@ -186,6 +193,14 @@
 				5768868C202E21ED001FBE75 /* Info.plist */,
 			);
 			path = ChillZoneUITests;
+			sourceTree = "<group>";
+		};
+		57E51D7C205075FB008A93D9 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				57E51D7D205075FC008A93D9 /* MapKit.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -257,6 +272,14 @@
 					57688666202E21EC001FBE75 = {
 						CreatedOnToolsVersion = 9.2;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+							com.apple.Maps.iOS = {
+								enabled = 1;
+							};
+						};
 					};
 					5768867A202E21ED001FBE75 = {
 						CreatedOnToolsVersion = 9.2;
@@ -337,6 +360,7 @@
 				5768866B202E21EC001FBE75 /* AppDelegate.swift in Sources */,
 				5737BAF9204518F900F31FDB /* Message.swift in Sources */,
 				5737BAF72045168500F31FDB /* MessageTableViewCell.swift in Sources */,
+				57E51D8020507CB8008A93D9 /* LocationHandler.swift in Sources */,
 				577E5201203D64AA002D65A8 /* IPManager.swift in Sources */,
 				5768869B202E2A36001FBE75 /* User.swift in Sources */,
 				5745ACBB20449E07000A880B /* ChatViewController.swift in Sources */,

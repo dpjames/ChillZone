@@ -100,6 +100,33 @@ class ChoreHandler {
             }
         }
     }
+    static func newChores() -> Bool{
+        print("doing bg for chores!!!!")
+        var ret = false;
+        let group = DispatchGroup();
+        group.enter();
+        let _ = HttpHandler.request(method: "GET", path: "/Chores/", body: ""){(data, response, error) in
+            if(data == nil){
+                return;
+            }
+            do{
+                //print(String(data: data!, encoding : String.Encoding.utf8));
+                var choreList = try JSONDecoder().decode(Array<Chore>.self, from: data!)
+                choreList = choreList.filter{ (element) in
+                    return(element.owner.caseInsensitiveCompare(User.email!) == ComparisonResult.orderedSame && element.notify == 1)
+                }
+                ret = choreList.count > 0;
+                group.leave();
+            }catch{
+                print("an error occured checkt he json in people detail controller")
+                print(error);
+                group.leave();
+            }
+        }
+        group.wait();
+        print("returning from bg chores!!")
+        return ret;
+    }
 }
 
 

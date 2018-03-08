@@ -7,10 +7,10 @@
 //
 
 import UIKit
-
+import MapKit
 class AutoLoginViewController: UIViewController {
-    private static let docDir = FileManager().urls(for: .documentDirectory, in: .userDomainMask).first!
-    private static let archURL = docDir.appendingPathComponent("savedLogin");
+    public static let docDir = FileManager().urls(for: .documentDirectory, in: .userDomainMask).first!
+    public static let archURL = docDir.appendingPathComponent("savedLogin");
     override func viewDidLoad() {
         print("in")
         super.viewDidLoad()

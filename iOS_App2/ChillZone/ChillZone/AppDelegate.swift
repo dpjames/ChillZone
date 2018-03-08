@@ -7,15 +7,27 @@
 //
 
 import UIKit
-
+import UserNotifications
+import MapKit
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
-
+    //var locationManager : CLLocationManager = CLLocationManager();
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        let center = UNUserNotificationCenter.current()
+        center.requestAuthorization(options: [.alert, .sound]) { (granted, error) in
+            // Enable or disable features based on authorization.
+        }
+        LocationHandler.setup();
+        UIApplication.shared.setMinimumBackgroundFetchInterval(2);
+        
+        //locationManager.requestAlwaysAuthorization();
+        //locationManager?.requestLocation();
+        //locationManager.delegate = LocationHandler();
+        //UIApplication.shared.setMinimumBackgroundFetchInterval(5);
         return true
     }
 
@@ -40,7 +52,49 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationWillTerminate(_ application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
-
-
+    func application(_ application: UIApplication, performFetchWithCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
+        var result = UIBackgroundFetchResult.noData;
+        //check Chore norifications
+        //check chat updates
+        if let userinfo = NSKeyedUnarchiver.unarchiveObject(withFile: AutoLoginViewController.archURL.path) as? [String:String]{
+            print("doing a log in with cred")
+            User.login(username: userinfo["username"], password: userinfo["password"], isGuest: false){
+                var noteText = "";
+                if(ChoreHandler.newChores()){
+                    print("new chore")
+                    noteText += "Do Your Chores!! "
+                    result = UIBackgroundFetchResult.newData;
+                }
+                if(MessageHandler.newMessage()){
+                    print("new message")
+                    noteText += "You've got some mail!!"
+                    result = UIBackgroundFetchResult.newData;
+                }
+                if(result == UIBackgroundFetchResult.newData){
+                    //show notification
+                    // configure notification content
+                    let content = UNMutableNotificationContent()
+                    content.title = NSString.localizedUserNotificationString(forKey: "Updates", arguments: nil)
+                    content.body = NSString.localizedUserNotificationString(forKey: noteText,arguments: nil)
+                    
+                    let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 1, repeats: false)
+                    
+                    // Create the request object.
+                    let request = UNNotificationRequest(identifier: "newDataUpdate", content: content, trigger: trigger)
+                    
+                    // Schedule the request
+                    let center = UNUserNotificationCenter.current()
+                    center.add(request) { (error : Error?) in
+                        if let theError = error {
+                            print(theError.localizedDescription)
+                            print("*****")
+                        }
+                    }
+                }
+                print("did it")
+                completionHandler(result);
+            }
+        }
+    }
 }
 
