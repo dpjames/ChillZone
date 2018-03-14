@@ -12,6 +12,7 @@ import MapKit
 class LocationHandler : NSObject, CLLocationManagerDelegate{
     private static var instance : LocationHandler?;
     private var lm : CLLocationManager;
+    private var region : CLCircularRegion?;
     init(_ b : Bool){
         lm = CLLocationManager();
         super.init();
@@ -29,12 +30,16 @@ class LocationHandler : NSObject, CLLocationManagerDelegate{
         else if CLLocationManager.authorizationStatus() == .authorizedAlways {
 
             let coordinate = CLLocationCoordinate2DMake(35.2635, -120.6999);
-            let radius = 10;
-            let region = CLCircularRegion(center: coordinate, radius: CLLocationDistance(radius), identifier: "chillZone");
-            lm.startMonitoring(for: region);
+            let radius = 100;
+            region = CLCircularRegion(center: coordinate, radius: CLLocationDistance(radius), identifier: "chillZone");
+            lm.startMonitoring(for: region!);
             
             
         }
+    }
+    static func update(){
+        print("location is updating!")
+        instance?.lm.requestLocation();
     }
     static func setup(){
         instance = LocationHandler(true);
@@ -48,7 +53,13 @@ class LocationHandler : NSObject, CLLocationManagerDelegate{
     func updateLocation(_ val : Int){
         if let userinfo = NSKeyedUnarchiver.unarchiveObject(withFile: AutoLoginViewController.archURL.path) as? [String:String]{
             print("doing a log in with cred")
+            //print("logging in with uname \(userinfo["username"]) and \(userinfo["password"])")
             User.login(username: userinfo["username"], password: userinfo["password"], isGuest: false){
+                if(HttpHandler.noConnection){
+                    print("error in login location handler");
+                    print("no cnn");
+                    return;
+                }
                 self.getId(val);
             }
         }
@@ -84,6 +95,12 @@ class LocationHandler : NSObject, CLLocationManagerDelegate{
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
         print("Error")
         print(error);
+    }
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        print(locations.count);
+        updateLocation((region?.contains(locations.last!.coordinate))! ? 1 : 0)
+        
+
     }
     
 }

@@ -45,6 +45,9 @@ class LightsViewController: UIViewController, UITableViewDelegate, UITableViewDa
     override func viewDidLoad() {
         super.viewDidLoad()
         let curState : Preset = LightHandler.setUp(self);
+        
+        let button = UIBarButtonItem(barButtonSystemItem: .add, target: self, action : #selector(adPreset));
+        navigationItem.rightBarButtonItem = button;
         globeSwitch.setOn(curState.globe, animated: false);
         readingSwitch.setOn(curState.reading, animated: false);
         ambientSwitch.setOn(curState.ambient, animated: false);
@@ -73,7 +76,8 @@ class LightsViewController: UIViewController, UITableViewDelegate, UITableViewDa
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    @IBAction func addPreset(_ sender: UIButton) {
+ 
+    @objc private func adPreset(){
         let alert = UIAlertController(title: "Add Preset", message: "Enter a Name", preferredStyle: .alert)
         alert.addTextField { (textField) in
             textField.text = ""
@@ -86,13 +90,12 @@ class LightsViewController: UIViewController, UITableViewDelegate, UITableViewDa
             self.updatePresets();
         }))
         self.present(alert, animated: true, completion: nil)
-        
     }
     private func updatePresets(){
-        func updatePresets(){
+        //func updatePresets(){
             print("updateing");
             NSKeyedArchiver.archiveRootObject(presets, toFile: LightsViewController.archURL.path)
-        }
+        //}
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         LightHandler.send(preset: presets[indexPath.row]);
@@ -100,14 +103,5 @@ class LightsViewController: UIViewController, UITableViewDelegate, UITableViewDa
     override func viewWillDisappear(_ animated: Bool) {
         Comet.reset();
     }
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }

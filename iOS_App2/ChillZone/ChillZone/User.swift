@@ -10,6 +10,7 @@ import Foundation
 class User{
     private static var admin : Bool = false;
     private static var loggedin : Bool = false;
+    private static var loginTime : Double = 0;
     public static var email : String?;
     public static func login(username :String?, password: String?, isGuest : Bool, closure : @escaping () -> Void){
         if(isGuest){
@@ -25,16 +26,20 @@ class User{
         body+="\"}"
         let _ = HttpHandler.request(method: "POST", path: "/Ssns", body: body){(data, response, error) in
             if(data == nil){
+                DispatchQueue.main.async {
+                    closure();
+                }
                 return;
             }
             let code = (response as! HTTPURLResponse).statusCode;
             print(code);
             if(code == 200){
                 admin = true;
+                loginTime = Date.timeIntervalSinceReferenceDate;
                 DispatchQueue.main.async {
                     closure();
-                    return;
                 }
+                return;
             }else{
                 print("bad login");
                 return;
@@ -54,5 +59,15 @@ class User{
         loggedin = false;
         email = "";
         LoginViewController.logout();
+    }
+    public static func checkLoginTime() -> Bool {
+        return Date.timeIntervalSinceReferenceDate - loginTime < 3600; //timeout values
+    }
+    public static func autoLogin(){
+        if let userinfo = NSKeyedUnarchiver.unarchiveObject(withFile: AutoLoginViewController.archURL.path) as? [String:String]{
+            login(username: userinfo["username"], password: userinfo["password"], isGuest: false){
+                print("login attempted. wasSuccess == \(!HttpHandler.noConnection)")
+            }
+        }
     }
 }

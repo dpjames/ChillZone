@@ -29,11 +29,11 @@ class LightHandler {
         }
     }
     private static func send(path : String){
-        HttpHandler.request(method: "POST", path: path, body: ""){_,_,_ in }
+        let _ = HttpHandler.request(method: "POST", path: path, body: ""){_,_,_ in }
     }
     public static func getState(){
         DispatchQueue.global(qos: .userInitiated).async {
-            HttpHandler.request(method: "GET", path: "/Lights", body: ""){(data, response, error) in
+            let _ = HttpHandler.request(method: "GET", path: "/Lights", body: ""){(data, response, error) in
                 if(data == nil){
                     return;
                 }

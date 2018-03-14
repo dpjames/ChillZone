@@ -17,6 +17,11 @@ class AutoLoginViewController: UIViewController {
         if let userinfo = NSKeyedUnarchiver.unarchiveObject(withFile: AutoLoginViewController.archURL.path) as? [String:String]{
             print("doing a log in with cred")
             User.login(username: userinfo["username"], password: userinfo["password"], isGuest: false){
+                print("going to check the error thing")
+                if(HttpHandler.noConnection){
+                    self.performSegue(withIdentifier: "toLoginSeg", sender: self)
+                    return;
+                }
                 self.performSegue(withIdentifier: "autoLoginSeg", sender: self);
             }
         }else{
@@ -26,6 +31,7 @@ class AutoLoginViewController: UIViewController {
             }
         }
     }
+    @IBOutlet weak var loader: UIActivityIndicatorView!
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }

@@ -46,6 +46,7 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
                 cell.right.backgroundColor = UIColor.clear;
             }
         }
+        cell.selectionStyle = .none;
         return cell
     }
     func scrollToBottom(){
@@ -81,8 +82,7 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
             MessageHandler.getMessages(since: self.messages[self.messages.count-1].whenMade, all : false)
         
         }
-        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillHide), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+        
         let button = UIBarButtonItem(barButtonSystemItem: .refresh, target: self, action : #selector(loadAll));
         navigationItem.rightBarButtonItem = button;
         
@@ -91,29 +91,30 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
         MessageHandler.getAllMessages();
     }
     @objc func keyboardWillShow(notification: NSNotification) {
-        if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
+        print("kbwsh")
+        if let keyboardSize = (notification.userInfo?[UIKeyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
             if self.view.frame.origin.y == 0{
-                self.view.frame.origin.y -= keyboardSize.height+45
+                self.view.frame.origin.y -= keyboardSize.height
             }
         }
     }
     
     @objc func keyboardWillHide(notification: NSNotification) {
-        if let _ = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
+        print("kbgoway")
+        if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
             if self.view.frame.origin.y != 0{
-                self.view.frame.origin.y = 0;
+                self.view.frame.origin.y += keyboardSize.height
             }
         }
     }
     @IBOutlet weak var composeMessage: UITextView!
     @IBAction func doSend(_ sender: UIButton) {
-        //composeMessage.resignFirstResponder();
-        //NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
-        //NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillHide), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
         MessageHandler.sendMessage(content: composeMessage.text!.replacingOccurrences(of: "\n", with: " \\n"));
         composeMessage.text = "";
     }
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        composeMessage.resignFirstResponder();
         if(indexPath.section == 0){
             MessageHandler.getAllMessages();
         }
@@ -121,6 +122,10 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    override func viewDidAppear(_ animated: Bool) {
+        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillHide), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
     }
     override func viewWillDisappear(_ animated: Bool) {
         Comet.reset();

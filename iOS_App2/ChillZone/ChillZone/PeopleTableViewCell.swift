@@ -29,6 +29,10 @@ class PeopleTableViewCell: UITableViewCell {
     
     private func doHome(_ row : Int){
         let _ = HttpHandler.request(method: "GET", path: "/Prss?email="+PeopleTableViewController.people[row], body: ""){(data, response, error) in
+            if(HttpHandler.noConnection){
+                print("error in request fpr is home");
+                return;
+            }
             let code = (response as! HTTPURLResponse).statusCode;
             if(code == 200){
                 print("it worked")
@@ -37,9 +41,9 @@ class PeopleTableViewCell: UITableViewCell {
                     let isHome = people[0].isHome;
                     DispatchQueue.main.async {
                         if(isHome == 1){
-                            self.isHome.backgroundColor = UIColor(displayP3Red: 0, green: 255, blue: 0, alpha: 0.4)
+                            self.isHome.backgroundColor = UIColor(displayP3Red: 0, green: 1, blue: 0, alpha: 0.4)
                         }else{
-                            self.isHome.backgroundColor = UIColor(displayP3Red: 255, green: 0, blue: 0, alpha: 0.4)
+                            self.isHome.backgroundColor = UIColor(displayP3Red: 1, green: 0, blue: 0, alpha: 0.4)
                         }
                     }
                 }catch{

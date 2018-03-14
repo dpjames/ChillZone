@@ -67,7 +67,7 @@ class MessageHandler{
                 let decoder = JSONDecoder();
                 var vals = try decoder.decode(Array<Message>.self, from : data!);
                 //print(vals);
-                print("the id is \(lastMessage)");
+                //print("the id is \(lastMessage)");
                 while(vals.first != nil && lastMessage != nil && vals.first!.id <= lastMessage!.id){
                     //print(vals.first?.id);
                     vals.remove(at: 0);

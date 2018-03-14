@@ -7,21 +7,35 @@
 //
 
 import UIKit
-
-class LoginViewController: UIViewController, UITextViewDelegate {
+import MapKit
+class LoginViewController: UIViewController, UITextViewDelegate, CLLocationManagerDelegate {
+    private var lm : CLLocationManager?;
+    private var loadlocation : CLLocationCoordinate2D?;
     private static let docDir = FileManager().urls(for: .documentDirectory, in: .userDomainMask).first!
     private static let archURL = docDir.appendingPathComponent("savedLogin");
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("inside")
-        // Do any additional setup after loading the view.
+        
+        lm = CLLocationManager();
+        lm?.delegate = self;
+        lm?.requestLocation();        // Do any additional setup after loading the view.
     }
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        print("got location!")
+        loadlocation = locations.last?.coordinate;
+        //print(loadlocation)
+    }
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+        print(error)
+    }
+    @IBOutlet weak var serverLabel: UILabel!
     static func logout(){
         do{
             try FileManager().removeItem(atPath: LoginViewController.archURL.path);
         }catch{
             print ("an error happened in logout");
         }
+        HttpHandler.noConnection = false;
     }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -36,7 +50,12 @@ class LoginViewController: UIViewController, UITextViewDelegate {
     @IBOutlet weak var usernameField: UITextField!
     @IBOutlet weak var passwordField: UITextField!
     @IBAction func loginClick(_ sender: UIButton) {
-        User.login(username: usernameField.text, password: passwordField.text, isGuest: false) {()->Void in
+        User.login(username: usernameField.text, password: passwordField.text, isGuest: false) {
+            if(HttpHandler.noConnection){
+                print("error in login vc");
+                self.serverLabel.isHidden = false;
+                return;
+            }
             if(User.isAdmin()){
                 var credentials : [String : String] = [:];
                 credentials["username"] = self.usernameField.text;
@@ -46,8 +65,27 @@ class LoginViewController: UIViewController, UITextViewDelegate {
             }
         }
     }
+    private func isHome() -> Bool{
+        let coordinate = CLLocationCoordinate2DMake(35.2635, -120.6999);
+        let radius = 100;
+        let region = CLCircularRegion(center: coordinate, radius: CLLocationDistance(radius), identifier: "chillZone");
+        var ret = false;
+        if let _ = loadlocation {
+            ret =  region.contains(loadlocation!);
+        }
+        lm?.requestLocation();
+        return ret;
+    }
     @IBAction func guestLoginClick(_ sender: UIButton) {
-        User.login(username: nil, password: nil, isGuest: true) {()->Void in
+        let _ = HttpHandler.request(method: "GET", path: "/Lights", body: "") { _,_,_ in } // check cnn
+        if(!isHome()){
+            return;
+        }
+        User.login(username: nil, password: nil, isGuest: true) {
+            if(HttpHandler.noConnection){
+                print("no Cnn");
+                return;
+            }
             if(User.isLoggedIn()){
                 print("doing guest");
                 self.performSegue(withIdentifier: "guestloginseg", sender: self);
@@ -64,14 +102,13 @@ class LoginViewController: UIViewController, UITextViewDelegate {
         }
         return false;
     }
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    override func viewDidAppear(_ animated: Bool) {
+        if(HttpHandler.noConnection){
+            print("no Cnn");
+            serverLabel.isHidden = false;
+        } else {
+            serverLabel.isHidden = true;
+        }
     }
-    */
 
 }
