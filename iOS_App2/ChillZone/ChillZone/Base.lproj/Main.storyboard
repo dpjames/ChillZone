@@ -426,7 +426,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Q00-Cb-lPq">
-                                <rect key="frame" x="0.0" y="20" width="320" height="452"/>
+                                <rect key="frame" x="0.0" y="64" width="320" height="408"/>
                                 <color key="backgroundColor" white="1" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="sectionIndexBackgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <prototypes>
@@ -598,7 +598,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="CBJ-BU-A1b">
-                                <rect key="frame" x="0.0" y="10" width="320" height="568"/>
+                                <rect key="frame" x="0.0" y="32" width="320" height="568"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="choreCell" rowHeight="89" id="jIE-eP-YSk" customClass="ChoreTableViewCell" customModule="ChillZone" customModuleProvider="target">
@@ -697,7 +697,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Chore Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7st-FV-vEd">
-                                <rect key="frame" x="20" y="20" width="96" height="53"/>
+                                <rect key="frame" x="20" y="64" width="96" height="53"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="96" id="cah-jc-P0w"/>
                                     <constraint firstAttribute="height" constant="53" id="ejO-HD-aPK"/>
@@ -707,7 +707,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Chore Description" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oK4-Bu-nkS">
-                                <rect key="frame" x="20" y="81" width="139" height="53"/>
+                                <rect key="frame" x="20" y="125" width="139" height="53"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="139" id="dWR-RX-Bls"/>
                                 </constraints>
@@ -716,7 +716,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Days To Complete" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ayd-AG-SiB">
-                                <rect key="frame" x="20" y="142" width="139" height="53"/>
+                                <rect key="frame" x="20" y="186" width="139" height="53"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="139" id="P2g-BH-SXe"/>
                                 </constraints>
@@ -725,7 +725,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Is Repeating?" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aFJ-gf-ikh">
-                                <rect key="frame" x="20" y="203" width="103" height="53"/>
+                                <rect key="frame" x="20" y="247" width="103" height="53"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="103" id="gpp-3T-RRG"/>
                                 </constraints>
@@ -734,7 +734,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="0CV-0c-wrS">
-                                <rect key="frame" x="167" y="141.5" width="133" height="53"/>
+                                <rect key="frame" x="167" y="185.5" width="133" height="53"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
@@ -743,7 +743,7 @@
                                 </connections>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="SVf-dh-cAD">
-                                <rect key="frame" x="167" y="20" width="133" height="53"/>
+                                <rect key="frame" x="167" y="64" width="133" height="53"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
@@ -752,7 +752,7 @@
                                 </connections>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Hgj-eI-8sf">
-                                <rect key="frame" x="167" y="81" width="133" height="53"/>
+                                <rect key="frame" x="167" y="125" width="133" height="53"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
@@ -760,15 +760,8 @@
                                     <outlet property="delegate" destination="BgW-6I-8vF" id="vbq-p2-RvJ"/>
                                 </connections>
                             </textField>
-                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="FBl-Kf-xsU">
-                                <rect key="frame" x="257" y="258" width="49" height="31"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="31" id="uu1-X5-uft"/>
-                                    <constraint firstAttribute="width" constant="47" id="w1f-js-1UE"/>
-                                </constraints>
-                            </switch>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oj0-Z2-Iyg">
-                                <rect key="frame" x="0.0" y="269" width="320" height="56"/>
+                                <rect key="frame" x="0.0" y="313" width="320" height="56"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="56" id="Pu4-Ky-J2W"/>
                                 </constraints>
@@ -777,6 +770,13 @@
                                     <action selector="doneClick:" destination="BgW-6I-8vF" eventType="touchUpInside" id="hlY-oh-idM"/>
                                 </connections>
                             </button>
+                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="FBl-Kf-xsU">
+                                <rect key="frame" x="210" y="258" width="49" height="31"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="31" id="uu1-X5-uft"/>
+                                    <constraint firstAttribute="width" constant="47" id="w1f-js-1UE"/>
+                                </constraints>
+                            </switch>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
