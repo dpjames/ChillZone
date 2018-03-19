@@ -17,7 +17,9 @@ class LocationHandler : NSObject, CLLocationManagerDelegate{
         lm = CLLocationManager();
         super.init();
         lm.delegate = self;
-        
+        let coordinate = CLLocationCoordinate2DMake(35.2635, -120.6999);
+        let radius = 100;
+        region = CLCircularRegion(center: coordinate, radius: CLLocationDistance(radius), identifier: "chillZone");
         
         if CLLocationManager.authorizationStatus() == .notDetermined {
             lm.requestAlwaysAuthorization()
@@ -29,9 +31,7 @@ class LocationHandler : NSObject, CLLocationManagerDelegate{
             // 3. we do have authorization
         else if CLLocationManager.authorizationStatus() == .authorizedAlways {
 
-            let coordinate = CLLocationCoordinate2DMake(35.2635, -120.6999);
-            let radius = 100;
-            region = CLCircularRegion(center: coordinate, radius: CLLocationDistance(radius), identifier: "chillZone");
+            
             lm.startMonitoring(for: region!);
             
             
@@ -98,7 +98,11 @@ class LocationHandler : NSObject, CLLocationManagerDelegate{
     }
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         print(locations.count);
-        updateLocation((region?.contains(locations.last!.coordinate))! ? 1 : 0)
+        if let last = locations.last {
+            print(region);
+            print(region?.contains(last.coordinate))
+            updateLocation((region?.contains(last.coordinate))! ? 1 : 0)
+        }
         
 
     }
