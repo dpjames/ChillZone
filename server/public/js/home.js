@@ -68,7 +68,6 @@ $.makeToggles = function(where) {
     '<span class="slider round"></span></label>'));
    temp.append($("</br>"));
    temp.append($("<span class='button-name'>globe</span>"));
-   $("#globe").click($.lights.toggle("globe"));
    where.append(temp);
 
    temp = $("<div id='readingdiv'></div>"); 
@@ -76,16 +75,18 @@ $.makeToggles = function(where) {
     '<span class="slider round"></span></label>'));
    temp.append($("</br>"));
    temp.append($("<span class='button-name'>reading</span>"));
-   $("#reading").click($.lights.toggle("reading"));
    where.append(temp);
 
    temp = $("<div id='ambientdiv'></div>"); 
    temp.append($('<label class="switch"><input id="ambient" type="checkbox">'+
     '<span class="slider round"></span></label>'));
+      
    temp.append($("</br>"));
    temp.append($("<span class='button-name'>ambient</span>"));
-   $("#ambient").click($.lights.toggle("ambient"));
    where.append(temp);
+   $("#globe").click($.lights.toggle("globe"));
+   $("#reading").click($.lights.toggle("reading"));
+   $("#ambient").click($.lights.toggle("ambient"));
 }
 $.makeChat = function(where){
    var container = $("<div id='chat'></div>");
