@@ -12,11 +12,14 @@ class Comet {
     private static var callback : () -> Void = {};
     private static var theRequest : URLSessionDataTask?;
     private static var killflag : Bool = false;
+    private static var dead : Bool = true;
     public static func comet(){
+        dead = false;
         theRequest = HttpHandler.request(method: "GET", path: "/Comet", body: ""){(data,response,error) in
-            if(killflag){
+            if(killflag || HttpHandler.noConnection){
                 print("finally dead");
                 killflag = false;
+                dead = true;
                 return;
             }
             if(data == nil){
@@ -49,5 +52,8 @@ class Comet {
     }
     public static func callback(callback : @escaping () -> Void){
         self.callback = callback;
+        if(dead){
+            comet();
+        }
     }
 }

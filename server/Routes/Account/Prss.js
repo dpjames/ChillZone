@@ -24,7 +24,7 @@ router.get('/', function(req, res) {
    };
 
    if (email) {
-      req.cnn.chkQry('select id, email from Person where email like ?', [email],
+      req.cnn.chkQry('select id, email, isHome from Person where email like ?', [email],
        handler);
    } 
    else {
@@ -61,6 +61,7 @@ router.post('/', function(req, res) {
          else {
             body.termsAccepted = body.termsAccepted && new Date();
          }
+         body.isHome = 0;
          cnn.chkQry('insert into Person set ?;', body, cb);
       }
    },
@@ -124,7 +125,7 @@ router.put("/:id", function(req, res) {
    function(cb) {
       if (vld.checkPrsOK(req.params.id, cb) 
        && vld.onlyHasFields(body, ["firstName", "lastName", "password", "role",
-       "termsAccepted", "whenRegistered", "oldPassword"], cb)
+       "termsAccepted", "whenRegistered", "oldPassword", "isHome"], cb)
        && vld.chain(!("termsAccepted" in body), Tags.forbiddenField, 
        ["termsAccepted"])
        .chain(!("whenRegistered" in body), Tags.forbiddenField, 

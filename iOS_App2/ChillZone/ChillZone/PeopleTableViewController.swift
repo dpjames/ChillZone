@@ -9,7 +9,7 @@
 import UIKit
 
 class PeopleTableViewController: UITableViewController{
-    private var people = ["David","Cameron","Hans","Ryan","Josh"];
+    static var people = ["David","Cameron","Hans","Ryan","Josh"];
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return (UIScreen.main.bounds.height - 20 - self.navigationController!.navigationBar.frame.height)/5;
     }
@@ -29,19 +29,19 @@ class PeopleTableViewController: UITableViewController{
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return people.count;
+        return PeopleTableViewController.people.count;
     }
 
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "peoplecell", for: indexPath) as! PeopleTableViewCell;
-        cell.nameLabel?.text = people[indexPath.row];
+        cell.make(indexPath.row)
         // Configure the cell...
         return cell
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        (segue.destination as! PeopleDetailViewController).setView(who: people[(sender as! Int)])
+        (segue.destination as! PeopleDetailViewController).setView(who: PeopleTableViewController.people[(sender as! Int)])
     }
 
 }

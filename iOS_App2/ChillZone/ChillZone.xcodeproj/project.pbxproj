@@ -7,9 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		571ECFCC2049E6F3000AB2E9 /* AutoLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 571ECFCB2049E6F3000AB2E9 /* AutoLoginViewController.swift */; };
 		5737BAF72045168500F31FDB /* MessageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5737BAF62045168500F31FDB /* MessageTableViewCell.swift */; };
 		5737BAF9204518F900F31FDB /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5737BAF8204518F900F31FDB /* Message.swift */; };
 		5737BAFB20451A7100F31FDB /* MessageHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5737BAFA20451A7100F31FDB /* MessageHandler.swift */; };
+		573E20032049F14F00A33A87 /* Chore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 573E20022049F14F00A33A87 /* Chore.swift */; };
+		573E20052049F80B00A33A87 /* ChoreHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 573E20042049F80B00A33A87 /* ChoreHandler.swift */; };
+		573E2007204BB9DF00A33A87 /* ChoreTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 573E2006204BB9DF00A33A87 /* ChoreTableViewCell.swift */; };
+		573E2009204BD65300A33A87 /* AddChoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 573E2008204BD65300A33A87 /* AddChoreViewController.swift */; };
 		5745ACBB20449E07000A880B /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5745ACBA20449E07000A880B /* ChatViewController.swift */; };
 		5745ACBD2045BC54000A880B /* Comet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5745ACBC2045BC54000A880B /* Comet.swift */; };
 		5745ACBF2045CF9D000A880B /* HttpHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5745ACBE2045CF9D000A880B /* HttpHandler.swift */; };
@@ -29,6 +34,8 @@
 		577E5201203D64AA002D65A8 /* IPManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 577E5200203D64AA002D65A8 /* IPManager.swift */; };
 		578BD36E202EB07000D26653 /* PeopleTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 578BD36D202EB07000D26653 /* PeopleTableViewController.swift */; };
 		578BD370202EB0C200D26653 /* PeopleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 578BD36F202EB0C200D26653 /* PeopleTableViewCell.swift */; };
+		57E51D7E205075FC008A93D9 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 57E51D7D205075FC008A93D9 /* MapKit.framework */; };
+		57E51D8020507CB8008A93D9 /* LocationHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57E51D7F20507CB8008A93D9 /* LocationHandler.swift */; };
 		57E528102044F3E100AED835 /* PeopleDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57E5280F2044F3E100AED835 /* PeopleDetailViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -50,9 +57,14 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		571ECFCB2049E6F3000AB2E9 /* AutoLoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutoLoginViewController.swift; sourceTree = "<group>"; };
 		5737BAF62045168500F31FDB /* MessageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageTableViewCell.swift; sourceTree = "<group>"; };
 		5737BAF8204518F900F31FDB /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		5737BAFA20451A7100F31FDB /* MessageHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageHandler.swift; sourceTree = "<group>"; };
+		573E20022049F14F00A33A87 /* Chore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Chore.swift; sourceTree = "<group>"; };
+		573E20042049F80B00A33A87 /* ChoreHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChoreHandler.swift; sourceTree = "<group>"; };
+		573E2006204BB9DF00A33A87 /* ChoreTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChoreTableViewCell.swift; sourceTree = "<group>"; };
+		573E2008204BD65300A33A87 /* AddChoreViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddChoreViewController.swift; sourceTree = "<group>"; };
 		5745ACBA20449E07000A880B /* ChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
 		5745ACBC2045BC54000A880B /* Comet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Comet.swift; sourceTree = "<group>"; };
 		5745ACBE2045CF9D000A880B /* HttpHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HttpHandler.swift; sourceTree = "<group>"; };
@@ -78,6 +90,8 @@
 		577E5200203D64AA002D65A8 /* IPManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IPManager.swift; sourceTree = "<group>"; };
 		578BD36D202EB07000D26653 /* PeopleTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeopleTableViewController.swift; sourceTree = "<group>"; };
 		578BD36F202EB0C200D26653 /* PeopleTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeopleTableViewCell.swift; sourceTree = "<group>"; };
+		57E51D7D205075FC008A93D9 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		57E51D7F20507CB8008A93D9 /* LocationHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationHandler.swift; sourceTree = "<group>"; };
 		57E5280F2044F3E100AED835 /* PeopleDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeopleDetailViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -86,6 +100,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				57E51D7E205075FC008A93D9 /* MapKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -113,6 +128,7 @@
 				5768867E202E21ED001FBE75 /* ChillZoneTests */,
 				57688689202E21ED001FBE75 /* ChillZoneUITests */,
 				57688668202E21EC001FBE75 /* Products */,
+				57E51D7C205075FB008A93D9 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -133,7 +149,13 @@
 				576886A0202E35C2001FBE75 /* Preset.swift */,
 				57688698202E2862001FBE75 /* LoginViewController.swift */,
 				5768866A202E21EC001FBE75 /* AppDelegate.swift */,
+				57E51D7F20507CB8008A93D9 /* LocationHandler.swift */,
 				5768866E202E21EC001FBE75 /* Main.storyboard */,
+				571ECFCB2049E6F3000AB2E9 /* AutoLoginViewController.swift */,
+				573E2008204BD65300A33A87 /* AddChoreViewController.swift */,
+				573E2006204BB9DF00A33A87 /* ChoreTableViewCell.swift */,
+				573E20022049F14F00A33A87 /* Chore.swift */,
+				573E20042049F80B00A33A87 /* ChoreHandler.swift */,
 				5737BAF8204518F900F31FDB /* Message.swift */,
 				5737BAF62045168500F31FDB /* MessageTableViewCell.swift */,
 				57E5280F2044F3E100AED835 /* PeopleDetailViewController.swift */,
@@ -144,8 +166,8 @@
 				5768869C202E3076001FBE75 /* LightsViewController.swift */,
 				5768869E202E3081001FBE75 /* MenuViewController.swift */,
 				5768869A202E2A36001FBE75 /* User.swift */,
-				5745ACBE2045CF9D000A880B /* HttpHandler.swift */,
 				577E5200203D64AA002D65A8 /* IPManager.swift */,
+				5745ACBE2045CF9D000A880B /* HttpHandler.swift */,
 				5745ACBA20449E07000A880B /* ChatViewController.swift */,
 				5737BAFA20451A7100F31FDB /* MessageHandler.swift */,
 				57688671202E21EC001FBE75 /* Assets.xcassets */,
@@ -171,6 +193,14 @@
 				5768868C202E21ED001FBE75 /* Info.plist */,
 			);
 			path = ChillZoneUITests;
+			sourceTree = "<group>";
+		};
+		57E51D7C205075FB008A93D9 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				57E51D7D205075FC008A93D9 /* MapKit.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -242,6 +272,14 @@
 					57688666202E21EC001FBE75 = {
 						CreatedOnToolsVersion = 9.2;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+							com.apple.Maps.iOS = {
+								enabled = 1;
+							};
+						};
 					};
 					5768867A202E21ED001FBE75 = {
 						CreatedOnToolsVersion = 9.2;
@@ -311,12 +349,18 @@
 				57688699202E2862001FBE75 /* LoginViewController.swift in Sources */,
 				5737BAFB20451A7100F31FDB /* MessageHandler.swift in Sources */,
 				576886A3202E36D6001FBE75 /* LightHandler.swift in Sources */,
+				571ECFCC2049E6F3000AB2E9 /* AutoLoginViewController.swift in Sources */,
+				573E2009204BD65300A33A87 /* AddChoreViewController.swift in Sources */,
+				573E20052049F80B00A33A87 /* ChoreHandler.swift in Sources */,
 				576886A5202E3783001FBE75 /* LightsTableViewCell.swift in Sources */,
+				573E2007204BB9DF00A33A87 /* ChoreTableViewCell.swift in Sources */,
+				573E20032049F14F00A33A87 /* Chore.swift in Sources */,
 				57E528102044F3E100AED835 /* PeopleDetailViewController.swift in Sources */,
 				5768869F202E3081001FBE75 /* MenuViewController.swift in Sources */,
 				5768866B202E21EC001FBE75 /* AppDelegate.swift in Sources */,
 				5737BAF9204518F900F31FDB /* Message.swift in Sources */,
 				5737BAF72045168500F31FDB /* MessageTableViewCell.swift in Sources */,
+				57E51D8020507CB8008A93D9 /* LocationHandler.swift in Sources */,
 				577E5201203D64AA002D65A8 /* IPManager.swift in Sources */,
 				5768869B202E2A36001FBE75 /* User.swift in Sources */,
 				5745ACBB20449E07000A880B /* ChatViewController.swift in Sources */,
@@ -491,7 +535,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = R4U3U5Q633;
 				INFOPLIST_FILE = ChillZone/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = k.ChillZone;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -505,7 +551,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = R4U3U5Q633;
 				INFOPLIST_FILE = ChillZone/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = k.ChillZone;
 				PRODUCT_NAME = "$(TARGET_NAME)";
